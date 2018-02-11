@@ -54,7 +54,7 @@ Public Class Repository
 
     Private WithEvents watcher As FileSystemWatcher
 
-    Public Event Changed(sender As Repository)
+    Public Event UpdateFinished(sender As Repository)
     Public Event UpdateStarted(sender As Repository)
 
     Sub UpdateLocalData()
@@ -95,7 +95,7 @@ Public Class Repository
             UncommitedStates.Add(CommitState.Unknown)
             LogError(ex)
         End Try
-        RaiseEvent Changed(Me)
+        RaiseEvent UpdateFinished(Me)
     End Sub
 
     Async Sub UpdateLocalBranches()
@@ -143,7 +143,7 @@ Public Class Repository
         Catch ex As Exception
             LogError(ex)
         End Try
-        RaiseEvent Changed(Me)
+        RaiseEvent UpdateFinished(Me)
     End Sub
     Async Sub UpdateRemoteData()
         RaiseEvent UpdateStarted(Me)

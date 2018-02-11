@@ -2,7 +2,7 @@
 
 Public Module Extensions
     <Extension> Public Function IsAlive(this As Control) As Boolean
-        If this Is Nothing OrElse this.IsDisposed OrElse this.Disposing OrElse this.IsHandleCreated = False Then
+        If this Is Nothing OrElse this.IsDisposed OrElse this.Disposing Then
             Return False
         Else
             Return True

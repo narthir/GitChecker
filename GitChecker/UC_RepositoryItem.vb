@@ -24,16 +24,16 @@
                                                     End If
                                                 End Sub
 
-        AddHandler Me.Repository.Changed, Sub(r As Repository)
-                                              If Me.IsAlive Then
-                                                  Me.Invoke(Sub()
-                                                                RefreshControlData()
-                                                                'B_SyncWithRemote.Image = My.Resources.sinchronize_16
-                                                                B_SyncWithRemote.BackColor = Color.White
-                                                                isUpdating = False
-                                                            End Sub)
-                                              End If
-                                          End Sub
+        AddHandler Me.Repository.UpdateFinished, Sub(r As Repository)
+                                                     If Me.IsAlive Then
+                                                         Me.Invoke(Sub()
+                                                                       RefreshControlData()
+                                                                       'B_SyncWithRemote.Image = My.Resources.sinchronize_16
+                                                                       B_SyncWithRemote.BackColor = Color.White
+                                                                       isUpdating = False
+                                                                   End Sub)
+                                                     End If
+                                                 End Sub
     End Sub
 
     Sub RefreshControlData()

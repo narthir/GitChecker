@@ -21,6 +21,9 @@ Public Class MainController
     Private repoList As New F_RepositoryList
     Private WithEvents remoteRefreshTimer As New Timer
 
+    Private hasChangedReposIco = New Icon(Assembly.GetEntryAssembly().GetManifestResourceStream("GitChecker.Git-Icon-Orange.ico"))
+    Private noChangedReposIco = New Icon(Assembly.GetEntryAssembly().GetManifestResourceStream("GitChecker.Git-Icon-White.ico"))
+
     Private Shared _instance As MainController
     Public Shared ReadOnly Property I As MainController
         Get
@@ -44,11 +47,10 @@ Public Class MainController
     Public Sub New()
         _instance = Me
         ni = New NotifyIcon()
-        ni.Icon = New Icon(Assembly.GetEntryAssembly().GetManifestResourceStream("GitChecker.Git-Icon-White.ico"))
-        ni.Visible = True
-
+        ni.Icon = noChangedReposIco
 
         setRepositories()
+
         repoList.ShowInTaskbar = My.Settings.ShowInTaskbar
         If My.Settings.ShowOnStartup Then repoList.Show()
 
@@ -67,7 +69,7 @@ Public Class MainController
         AddHandler remoteRefreshTimer.Tick, Sub()
                                                 SyncAllRemoteRepositories()
                                             End Sub
-        Task.Run(Sub() SyncAllRemoteRepositories())
+        'Task.Run(Sub() SyncAllRemoteRepositories())
 
         SetRemoteRefreshInterval(My.Settings.RemoteRefreshInterval)
 
@@ -83,6 +85,7 @@ Public Class MainController
         ni.ContextMenuStrip.Items.Add(exitItm)
         AddHandler exitItm.Click, AddressOf [Exit]
 
+        ni.Visible = True
     End Sub
 
     Private Sub setRepositories()
@@ -96,21 +99,24 @@ Public Class MainController
                           If di.Exists Then parentDirectories.Add(di)
                       End Sub)
         parentDirectories.ForEach(Sub(parent) repositories.AddRange(getRepositories(parent)))
-        repoList.SetRepositories(repositories)
 
         For Each repo In repositories
-            AddHandler repo.Changed, Sub()
-                                         UpdateIcon()
-                                     End Sub
-            repo.UpdateLocalData()
+            AddHandler repo.UpdateFinished, Sub()
+                                                UpdateIcon()
+                                            End Sub
+            Task.Run(Sub() repo.UpdateLocalData())
         Next
+
+        repoList.SetRepositories(repositories)
     End Sub
 
+
     Public Sub UpdateIcon()
-        If repositories.Where(Function(x) x.AnyChanges).Any Then
-            ni.Icon = New Icon(Assembly.GetEntryAssembly().GetManifestResourceStream("GitChecker.Git-Icon-Orange.ico"))
-        Else
-            ni.Icon = New Icon(Assembly.GetEntryAssembly().GetManifestResourceStream("GitChecker.Git-Icon-White.ico"))
+        Dim anyChanges = repositories.Where(Function(x) x.AnyChanges).Any
+        If anyChanges AndAlso ni.Icon Is noChangedReposIco Then
+            ni.Icon = hasChangedReposIco
+        ElseIf anyChanges = False AndAlso ni.Icon Is hasChangedReposIco Then
+            ni.Icon = noChangedReposIco
         End If
     End Sub
 
@@ -121,8 +127,9 @@ Public Class MainController
     Public Sub SyncAllRemoteRepositories()
         Dim reposToSync = repositories.ToList
         While reposToSync.Any
-            Dim batch = reposToSync.TakeAndRemove(1)
+            Dim batch = reposToSync.TakeAndRemove(3)
             Dim tasks As New List(Of Task)
+            tasks.Add(Task.Delay(5000))
             batch.ForEach(Sub(repo)
                               tasks.Add(Task.Run(Sub()
                                                      repo.UpdateRemoteData()

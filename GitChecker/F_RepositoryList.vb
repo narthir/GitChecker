@@ -37,12 +37,11 @@
             uc.Width = FLP_RepositoryList.Width - 20
             repoItems.Add(uc)
             isTopItem = False
-            AddHandler repo.Changed, Sub()
-                                         If Me.filterOnlyChanged AndAlso repo.AnyChanges Then
-                                             Me.Invoke(Sub() filter())
-                                         End If
-
-                                     End Sub
+            AddHandler repo.UpdateFinished, Sub(r)
+                                                If uc.IsAlive Then
+                                                    uc.Invoke(Sub() uc.Visible = isRepoItemVisible(uc))
+                                                End If
+                                            End Sub
         Next
         repoItems.ForEach(Sub(x)
                               If FLP_RepositoryList.InvokeRequired Then
@@ -50,7 +49,6 @@
                               Else
                                   FLP_RepositoryList.Controls.Add(x)
                               End If
-
                           End Sub)
         filter()
     End Sub
@@ -60,9 +58,7 @@
             Dim s As Screen = Screen.FromPoint(New Point(Cursor.Position.X, Cursor.Position.Y))
             Me.Height = s.WorkingArea.Height - 20
             Me.Location = New Point(s.Bounds.Width - Me.Width - 10, s.WorkingArea.Height - Me.Height - 10)
-            For Each repoItem In repoItems
-                repoItem.RefreshControlData()
-            Next
+            filter()
         End If
     End Sub
 
@@ -114,22 +110,27 @@
 
     Private Sub filter()
         Me.SuspendLayout()
+        FLP_RepositoryList.SuspendLayout()
         repoItems.ForEach(Sub(repoItm)
-                              Dim visible As Boolean = True
-                              If TE_Filter.Text <> String.Empty Then
-                                  If Not repoItm.Repository.Name.ToLower Like String.Format("*{0}*", TE_Filter.Text) Then
-                                      visible = False
-                                  End If
-                              End If
-
-                              If Me.filterOnlyChanged AndAlso repoItm.Repository.AnyChanges = False Then
-                                  visible = False
-                              End If
-                              If visible Then repoItm.RefreshControlData()
-                              repoItm.Visible = visible
+                              repoItm.Visible = isRepoItemVisible(repoItm)
                           End Sub)
+        FLP_RepositoryList.ResumeLayout()
         Me.ResumeLayout()
     End Sub
+
+    Private Function isRepoItemVisible(repoItm As UC_RepositoryItem) As Boolean
+        Dim visible As Boolean = True
+        If TE_Filter.Text <> String.Empty Then
+            If Not repoItm.Repository.Name.ToLower Like String.Format("*{0}*", TE_Filter.Text) Then
+                visible = False
+            End If
+        End If
+
+        If Me.filterOnlyChanged AndAlso repoItm.Repository.AnyChanges = False Then
+            visible = False
+        End If
+        Return visible
+    End Function
 
     Private Sub B_FilterWithChanges_Click(sender As Object, e As EventArgs) Handles B_FilterOnlyChanged.Click
         setFilterChanged(True)
