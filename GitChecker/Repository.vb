@@ -12,7 +12,7 @@ Public Class Repository
         watcher.Filter = "*.*"
 
         Dim updateLocalSub = Sub()
-                                 Task.Run(Sub() UpdateLocalData())
+                                 UpdateLocalData()
                              End Sub
 
         AddHandler watcher.Changed, updateLocalSub
