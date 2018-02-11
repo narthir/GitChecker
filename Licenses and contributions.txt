@@ -1,1 +1,2 @@
-Icons are from https://www.iconsdb.com/orange-icons/invisible-icon.html under Creative Commons Attribution-NoDerivs 3.0
+Images are from https://www.iconsdb.com under Creative Commons Attribution-NoDerivs 3.0 or CC0 1.0 Universal (CC0 1.0) Public Domain Dedication or MIT License
+Git Icons are from https://git-scm.com/downloads/logos

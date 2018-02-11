@@ -1,7 +1,33 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" UseMySettingsClassName="true">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="My" GeneratedClassName="MySettings" UseMySettingsClassName="true">
+  <Profiles />
+  <Settings>
+    <Setting Name="GitLocation" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Program Files\Git\cmd\git.exe</Value>
+    </Setting>
+    <Setting Name="ExternalToolPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">%UserProfile%\AppData\Local\GitHubDesktop\bin\GitHub.bat</Value>
+    </Setting>
+    <Setting Name="ExternalToolArguments" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{path}</Value>
+    </Setting>
+    <Setting Name="ShowInTaskbar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ShowOnStartup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="IsPinned" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="RemoteRefreshInterval" Type="System.TimeSpan" Scope="User">
+      <Value Profile="(Default)">00:01:00</Value>
+    </Setting>
+    <Setting Name="FilterOnlyChanged" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ParentDirectories" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
 </SettingsFile>

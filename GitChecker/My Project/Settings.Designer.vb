@@ -53,6 +53,114 @@ Namespace My
                 Return defaultInstance
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\Program Files\Git\cmd\git.exe")>  _
+        Public Property GitLocation() As String
+            Get
+                Return CType(Me("GitLocation"),String)
+            End Get
+            Set
+                Me("GitLocation") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("%UserProfile%\AppData\Local\GitHubDesktop\bin\GitHub.bat")>  _
+        Public Property ExternalToolPath() As String
+            Get
+                Return CType(Me("ExternalToolPath"),String)
+            End Get
+            Set
+                Me("ExternalToolPath") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("{path}")>  _
+        Public Property ExternalToolArguments() As String
+            Get
+                Return CType(Me("ExternalToolArguments"),String)
+            End Get
+            Set
+                Me("ExternalToolArguments") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property ShowInTaskbar() As Boolean
+            Get
+                Return CType(Me("ShowInTaskbar"),Boolean)
+            End Get
+            Set
+                Me("ShowInTaskbar") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
+        Public Property ShowOnStartup() As Boolean
+            Get
+                Return CType(Me("ShowOnStartup"),Boolean)
+            End Get
+            Set
+                Me("ShowOnStartup") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property IsPinned() As Boolean
+            Get
+                Return CType(Me("IsPinned"),Boolean)
+            End Get
+            Set
+                Me("IsPinned") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("00:01:00")>  _
+        Public Property RemoteRefreshInterval() As Global.System.TimeSpan
+            Get
+                Return CType(Me("RemoteRefreshInterval"),Global.System.TimeSpan)
+            End Get
+            Set
+                Me("RemoteRefreshInterval") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("False")>  _
+        Public Property FilterOnlyChanged() As Boolean
+            Get
+                Return CType(Me("FilterOnlyChanged"),Boolean)
+            End Get
+            Set
+                Me("FilterOnlyChanged") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property ParentDirectories() As String
+            Get
+                Return CType(Me("ParentDirectories"),String)
+            End Get
+            Set
+                Me("ParentDirectories") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

@@ -117,53 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="download_2_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\download-2-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="edit_12_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\edit-12-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="exe_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exe-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="list_rich_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\list-rich-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="minus_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\minus-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="new_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\new-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pin_3_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pin-3-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="save_24" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\save-24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="search_15_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search-15-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="settings_5_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\settings-5-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="sinchronize_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sinchronize-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="star_27_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\star-27-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="unpin_2_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\unpin-2-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="upload_3_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\upload-3-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="x_mark_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\x-mark-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="B_Close.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAKxJREFUOE+N
+        k9sKwjAQRPPg54mI+H9F+uA3ig86J2RKWndjBg7ksjPNpSlNJ7GIW+2NdRcPgaeKxlN8xFtQkIk5aqjF
+        U0P4MgMmC+nNhpWUs3i1AXMMicx48FaNQv6arSxkymxFIT1Ds5WFTJlRtGfwmQyVmc0wJDLTj8Z+QiIz
+        e742jmeyC8nMF2HRTkP4HfuJ7LSj21nF7jFlZqsP2R4TosFKZu6ZmvacS/kCwpeDGSJ6NLQAAAAASUVO
+        RK5CYII=
+</value>
   </data>
 </root>

@@ -13,6 +13,21 @@
     <MyType>WindowsFormsWithCustomSubMain</MyType>
     <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -48,7 +63,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -72,6 +89,15 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Branch.vb" />
+    <Compile Include="ConsoleController.vb" />
+    <Compile Include="Extensions.vb" />
+    <Compile Include="F_Settings.Designer.vb">
+      <DependentUpon>F_Settings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Settings.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainController.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -88,13 +114,35 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="F_RepositoryList.Designer.vb">
+      <DependentUpon>F_RepositoryList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_RepositoryList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Repository.vb" />
+    <Compile Include="UC_RepositoryItem.Designer.vb">
+      <DependentUpon>UC_RepositoryItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UC_RepositoryItem.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="F_Settings.resx">
+      <DependentUpon>F_Settings.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="F_RepositoryList.resx">
+      <DependentUpon>F_RepositoryList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UC_RepositoryItem.resx">
+      <DependentUpon>UC_RepositoryItem.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +159,62 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Git-Icon-Black.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sinchronize-16.png" />
+    <None Include="Resources\settings-5-16.png" />
+    <None Include="Resources\x-mark-16.png" />
+    <None Include="Resources\unpin-2-16.png" />
+    <None Include="Resources\save-24.png" />
+    <None Include="Resources\pin-3-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download-2-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\list-rich-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\upload-3-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exe-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search-15-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit-12-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\star-27-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Git-Icon-Orange.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Git-Icon-White.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus-16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
