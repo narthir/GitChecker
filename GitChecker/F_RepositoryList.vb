@@ -28,8 +28,15 @@
 
     Public Sub SetRepositories(repos As List(Of Repository))
         For Each repoItem In repoItems
-            FLP_RepositoryList.Controls.Remove(repoItem)
-            repoItem.Dispose()
+            If FLP_RepositoryList.InvokeRequired Then
+                FLP_RepositoryList.Invoke(Sub()
+                                              FLP_RepositoryList.Controls.Remove(repoItem)
+                                              repoItem.Dispose()
+                                          End Sub)
+            Else
+                FLP_RepositoryList.Controls.Remove(repoItem)
+                repoItem.Dispose()
+            End If
         Next
         Dim isTopItem As Boolean = True
         For Each repo In repos.OrderBy(Function(x) x.Name)
@@ -112,7 +119,14 @@
         Me.SuspendLayout()
         FLP_RepositoryList.SuspendLayout()
         repoItems.ForEach(Sub(repoItm)
-                              repoItm.Visible = isRepoItemVisible(repoItm)
+                              If repoItm.IsAlive Then
+                                  If repoItm.InvokeRequired Then
+                                      repoItm.Invoke(Sub() repoItm.Visible = isRepoItemVisible(repoItm))
+                                  Else
+                                      repoItm.Visible = isRepoItemVisible(repoItm)
+                                  End If
+
+                              End If
                           End Sub)
         FLP_RepositoryList.ResumeLayout()
         Me.ResumeLayout()

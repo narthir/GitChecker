@@ -12,7 +12,7 @@ Public Class Repository
         watcher.Filter = "*.*"
 
         Dim updateLocalSub = Sub()
-                                 UpdateLocalData()
+                                 Task.Run(Sub() UpdateLocalData())
                              End Sub
 
         AddHandler watcher.Changed, updateLocalSub
@@ -57,12 +57,13 @@ Public Class Repository
     Public Event UpdateFinished(sender As Repository)
     Public Event UpdateStarted(sender As Repository)
 
-    Sub UpdateLocalData()
+    Async Sub UpdateLocalData()
         RaiseEvent UpdateStarted(Me)
-        UpdateLocalBranches()
-        UpdateUncommitedState()
+        Await UpdateLocalBranches()
+        Await UpdateUncommitedState()
+        RaiseEvent UpdateFinished(Me)
     End Sub
-    Async Sub UpdateUncommitedState()
+    Private Async Function UpdateUncommitedState() As Task
         Try
             Dim proc = getGitProc()
             proc.StartInfo.Arguments &= "diff --shortstat"
@@ -95,10 +96,9 @@ Public Class Repository
             UncommitedStates.Add(CommitState.Unknown)
             LogError(ex)
         End Try
-        RaiseEvent UpdateFinished(Me)
-    End Sub
+    End Function
 
-    Async Sub UpdateLocalBranches()
+    Private Async Function UpdateLocalBranches() As Task
         Try
             Dim proc = getGitProc()
             proc.StartInfo.Arguments &= "for-each-ref --format=""%(HEAD)|%(refname:short)|%(upstream:track)"" refs/heads"
@@ -143,11 +143,11 @@ Public Class Repository
         Catch ex As Exception
             LogError(ex)
         End Try
-        RaiseEvent UpdateFinished(Me)
-    End Sub
-    Async Sub UpdateRemoteData()
-        RaiseEvent UpdateStarted(Me)
+    End Function
+    Async Function UpdateRemoteData() As Task
+
         Try
+            RaiseEvent UpdateStarted(Me)
             Dim proc = getGitProc()
             proc.StartInfo.Arguments &= "remote -v update"
             Dim results As New List(Of String)
@@ -156,12 +156,13 @@ Public Class Repository
                                                   End Sub)
             Await cc.Run
             results.DebugWriteLineAll(Me.Name & " : UpdateRemoteData : {0}")
-            UpdateLocalBranches()
+            RaiseEvent UpdateFinished(Me)
+            Await UpdateLocalBranches()
         Catch ex As Exception
             LogError(ex)
             Throw
         End Try
-    End Sub
+    End Function
 
     Private Function getGitProc() As Process
         Dim procInfo As New ProcessStartInfo

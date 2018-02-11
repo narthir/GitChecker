@@ -1,7 +1,6 @@
 ﻿Public Class UC_RepositoryItem
 
     Public ReadOnly Repository As Repository
-    Private isUpdating As Boolean = False
     Private isTopItem As Boolean = False
 
     Public Sub New(repository As Repository, isTopItem As Boolean)
@@ -17,20 +16,14 @@
         L_RepositoryName.Text = String.Format("{0}", repository.Name)
 
         AddHandler Me.Repository.UpdateStarted, Sub(r As Repository)
-                                                    If isUpdating = False Then
-                                                        isUpdating = True
-                                                        'B_SyncWithRemote.Image = My.Resources.sinchronize_16
-                                                        B_SyncWithRemote.BackColor = Color.Orange
-                                                    End If
+                                                    B_SyncWithRemote.BackColor = Color.Orange
                                                 End Sub
 
         AddHandler Me.Repository.UpdateFinished, Sub(r As Repository)
                                                      If Me.IsAlive Then
                                                          Me.Invoke(Sub()
                                                                        RefreshControlData()
-                                                                       'B_SyncWithRemote.Image = My.Resources.sinchronize_16
                                                                        B_SyncWithRemote.BackColor = Color.White
-                                                                       isUpdating = False
                                                                    End Sub)
                                                      End If
                                                  End Sub
@@ -70,7 +63,7 @@
     End Sub
 
     Private Async Sub B_SyncWithRemote_Click(sender As Object, e As EventArgs) Handles B_SyncWithRemote.Click
-        Await Task.Run(Sub() Repository.UpdateRemoteData())
+        Await Repository.UpdateRemoteData()
     End Sub
 
 End Class
