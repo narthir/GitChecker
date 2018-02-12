@@ -92,6 +92,7 @@
   <ItemGroup>
     <Compile Include="Branch.vb" />
     <Compile Include="ConsoleController.vb" />
+    <Compile Include="EventQueueHandler.vb" />
     <Compile Include="Extensions.vb" />
     <Compile Include="F_Settings.Designer.vb">
       <DependentUpon>F_Settings.vb</DependentUpon>

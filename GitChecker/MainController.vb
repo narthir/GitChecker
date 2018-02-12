@@ -69,7 +69,10 @@ Public Class MainController
         AddHandler remoteRefreshTimer.Tick, Sub()
                                                 SyncAllRemoteRepositories()
                                             End Sub
-        Task.Run(Sub() SyncAllRemoteRepositories())
+        Task.Run(Sub()
+                     Threading.Thread.Sleep(10000)
+                     SyncAllRemoteRepositories()
+                 End Sub)
 
         SetRemoteRefreshInterval(My.Settings.RemoteRefreshInterval)
 
@@ -125,16 +128,18 @@ Public Class MainController
     End Sub
 
     Public Sub SyncAllRemoteRepositories()
+        Debug.WriteLine("----  Starting  SyncAllRemoteRepositories   -----")
         Dim reposToSync = repositories.ToList
         While reposToSync.Any
             Dim batch = reposToSync.TakeAndRemove(3)
             Dim tasks As New List(Of Task)
-            tasks.Add(Task.Delay(5000))
+            tasks.Add(Task.Delay(3000))
             batch.ForEach(Async Sub(repo)
                               Await repo.UpdateRemoteData()
                           End Sub)
             Task.WaitAll(tasks.ToArray)
         End While
+        Debug.WriteLine("----  Finished  SyncAllRemoteRepositories   -----")
     End Sub
 
     Private Function getRepositories(parent As DirectoryInfo) As List(Of Repository)

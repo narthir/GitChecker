@@ -3,22 +3,25 @@ Imports System.Threading
 
 Public Class Repository
     Implements IDisposable
+
+    Private watcherEventQueHandler As New EventQueueHandler(TimeSpan.FromMilliseconds(1500))
+
     Public Sub New(location As DirectoryInfo)
         Me.Location = location
 
         watcher = New FileSystemWatcher()
+        watcher.IncludeSubdirectories = True
         watcher.Path = Me.Location.FullName
         watcher.NotifyFilter = NotifyFilters.LastWrite + NotifyFilters.CreationTime + NotifyFilters.FileName
         watcher.Filter = "*.*"
 
-        Dim updateLocalSub = Sub()
-                                 UpdateLocalData()
-                             End Sub
+        AddHandler watcherEventQueHandler.TimeoutReached, AddressOf UpdateLocalData
+        Dim ulcSub = Sub() watcherEventQueHandler.AppendAndResetTimer(Nothing, Nothing)
 
-        AddHandler watcher.Changed, updateLocalSub
-        AddHandler watcher.Deleted, updateLocalSub
-        AddHandler watcher.Renamed, updateLocalSub
-        AddHandler watcher.Created, updateLocalSub
+        AddHandler watcher.Changed, ulcSub
+        AddHandler watcher.Deleted, ulcSub
+        AddHandler watcher.Renamed, ulcSub
+        AddHandler watcher.Created, ulcSub
 
         watcher.EnableRaisingEvents = True
     End Sub
@@ -58,29 +61,36 @@ Public Class Repository
     Public Event UpdateStarted(sender As Repository)
 
     Async Sub UpdateLocalData()
-        RaiseEvent UpdateStarted(Me)
-        Await UpdateLocalBranches()
-        Await UpdateUncommitedState()
-        RaiseEvent UpdateFinished(Me)
+        Try
+            RaiseEvent UpdateStarted(Me)
+            watcher.EnableRaisingEvents = False
+            Await UpdateLocalBranches()
+            Await UpdateUncommitedState()
+        Finally
+            watcher.EnableRaisingEvents = True
+            RaiseEvent UpdateFinished(Me)
+        End Try
     End Sub
     Private Async Function UpdateUncommitedState() As Task
         Try
             Dim proc = getGitProc()
             proc.StartInfo.Arguments &= "diff --shortstat"
             Dim shortStatsResults As New List(Of String)
-            Dim cc As New ConsoleController(proc, Sub(x)
-                                                      shortStatsResults.Add(x)
-                                                  End Sub)
-            Await cc.Run
+            Using cc As New ConsoleController(proc, Sub(x)
+                                                        shortStatsResults.Add(x)
+                                                    End Sub)
+                Await cc.Run
+            End Using
             shortStatsResults.DebugWriteLineAll(Me.Name & " : Uncommited: {0}")
 
             proc = getGitProc()
             proc.StartInfo.Arguments &= "ls-files --others --exclude-standard"
             Dim otherResults As New List(Of String)
-            cc = New ConsoleController(proc, Sub(x)
-                                                 otherResults.Add(x)
-                                             End Sub)
-            Await cc.Run
+            Using cc = New ConsoleController(proc, Sub(x)
+                                                       otherResults.Add(x)
+                                                   End Sub)
+                Await cc.Run
+            End Using
             otherResults.DebugWriteLineAll(Me.Name & " : Untracked: {0}")
 
             UncommitedStates.Clear()
@@ -103,10 +113,11 @@ Public Class Repository
             Dim proc = getGitProc()
             proc.StartInfo.Arguments &= "for-each-ref --format=""%(HEAD)|%(refname:short)|%(upstream:track)"" refs/heads"
             Dim branchesResults As New List(Of String)
-            Dim cc = New ConsoleController(proc, Sub(x)
-                                                     branchesResults.Add(x)
-                                                 End Sub)
-            Await cc.Run
+            Using cc = New ConsoleController(proc, Sub(x)
+                                                       branchesResults.Add(x)
+                                                   End Sub)
+                Await cc.Run
+            End Using
             branchesResults.DebugWriteLineAll(Me.Name & " : Branches : {0}")
 
             Dim branches As New List(Of LocalBranch)
@@ -145,16 +156,16 @@ Public Class Repository
         End Try
     End Function
     Async Function UpdateRemoteData() As Task
-
         Try
             RaiseEvent UpdateStarted(Me)
+            Dim results As New List(Of String)
             Dim proc = getGitProc()
             proc.StartInfo.Arguments &= "remote -v update"
-            Dim results As New List(Of String)
-            Dim cc As New ConsoleController(proc, Sub(x)
-                                                      results.Add(x)
-                                                  End Sub)
-            Await cc.Run
+            Using cc As New ConsoleController(proc, Sub(x)
+                                                        results.Add(x)
+                                                    End Sub)
+                Await cc.Run
+            End Using
             results.DebugWriteLineAll(Me.Name & " : UpdateRemoteData : {0}")
             RaiseEvent UpdateFinished(Me)
             Await UpdateLocalBranches()

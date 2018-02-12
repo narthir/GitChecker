@@ -21,12 +21,13 @@
 
         AddHandler Me.Repository.UpdateFinished, Sub(r As Repository)
                                                      If Me.IsAlive Then
-                                                         Me.Invoke(Sub()
-                                                                       RefreshControlData()
-                                                                       B_SyncWithRemote.BackColor = Color.White
-                                                                   End Sub)
+                                                         Me.InvokeGUI(Sub()
+                                                                          RefreshControlData()
+                                                                          B_SyncWithRemote.BackColor = Color.White
+                                                                      End Sub)
                                                      End If
                                                  End Sub
+
     End Sub
 
     Sub RefreshControlData()
@@ -66,4 +67,12 @@
         Await Repository.UpdateRemoteData()
     End Sub
 
+    Private Sub TLP_Main_VisibleChanged(sender As Object, e As EventArgs) Handles TLP_Main.VisibleChanged
+        If Me.IsAlive AndAlso Me.Visible Then
+            Me.InvokeGUI(Sub()
+                             RefreshControlData()
+                             B_SyncWithRemote.BackColor = Color.White
+                         End Sub)
+        End If
+    End Sub
 End Class

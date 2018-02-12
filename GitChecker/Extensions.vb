@@ -2,7 +2,7 @@
 
 Public Module Extensions
     <Extension> Public Function IsAlive(this As Control) As Boolean
-        If this Is Nothing OrElse this.IsDisposed OrElse this.Disposing Then
+        If this Is Nothing OrElse this.IsDisposed OrElse this.Disposing OrElse this.IsHandleCreated = False Then
             Return False
         Else
             Return True
@@ -31,4 +31,12 @@ Public Module Extensions
     <Extension> Public Function TakeAndRemove(Of T)(this As List(Of T)) As T
         Return TakeAndRemove(Of T)(this, 1).SingleOrDefault
     End Function
+
+    <Extension> Public Sub InvokeGUI(this As Control, Action As Action)
+        If this.InvokeRequired Then
+            this.Invoke(Action)
+        Else
+            Action()
+        End If
+    End Sub
 End Module
