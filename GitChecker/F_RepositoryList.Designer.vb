@@ -25,7 +25,6 @@ Partial Class F_RepositoryList
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F_RepositoryList))
         Me.MainPanel = New System.Windows.Forms.Panel()
         Me.TLP_Main = New System.Windows.Forms.TableLayoutPanel()
-        Me.B_Close = New System.Windows.Forms.Button()
         Me.FLP_RepositoryList = New System.Windows.Forms.FlowLayoutPanel()
         Me.TLP_Options = New System.Windows.Forms.TableLayoutPanel()
         Me.B_Refresh = New System.Windows.Forms.Button()
@@ -36,6 +35,7 @@ Partial Class F_RepositoryList
         Me.TE_Filter = New System.Windows.Forms.TextBox()
         Me.PB_Filter = New System.Windows.Forms.PictureBox()
         Me.P_Header = New System.Windows.Forms.Panel()
+        Me.B_Close = New System.Windows.Forms.Button()
         Me.MainPanel.SuspendLayout()
         Me.TLP_Main.SuspendLayout()
         Me.TLP_Options.SuspendLayout()
@@ -73,18 +73,6 @@ Partial Class F_RepositoryList
         Me.TLP_Main.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TLP_Main.Size = New System.Drawing.Size(460, 559)
         Me.TLP_Main.TabIndex = 3
-        '
-        'B_Close
-        '
-        Me.B_Close.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.B_Close.BackgroundImage = CType(resources.GetObject("B_Close.BackgroundImage"), System.Drawing.Image)
-        Me.B_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.B_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_Close.Location = New System.Drawing.Point(414, 3)
-        Me.B_Close.Name = "B_Close"
-        Me.B_Close.Size = New System.Drawing.Size(34, 28)
-        Me.B_Close.TabIndex = 4
-        Me.B_Close.UseVisualStyleBackColor = True
         '
         'FLP_RepositoryList
         '
@@ -216,6 +204,18 @@ Partial Class F_RepositoryList
         Me.P_Header.Name = "P_Header"
         Me.P_Header.Size = New System.Drawing.Size(458, 38)
         Me.P_Header.TabIndex = 4
+        '
+        'B_Close
+        '
+        Me.B_Close.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.B_Close.BackgroundImage = CType(resources.GetObject("B_Close.BackgroundImage"), System.Drawing.Image)
+        Me.B_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.B_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.B_Close.Location = New System.Drawing.Point(418, 5)
+        Me.B_Close.Name = "B_Close"
+        Me.B_Close.Size = New System.Drawing.Size(34, 28)
+        Me.B_Close.TabIndex = 4
+        Me.B_Close.UseVisualStyleBackColor = True
         '
         'F_RepositoryList
         '
