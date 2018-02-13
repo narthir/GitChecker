@@ -49,7 +49,7 @@ Public Class MainController
         ni = New NotifyIcon()
         ni.Icon = noChangedReposIco
 
-        setRepositories()
+        setRepositories().Wait()
 
         repoList.ShowInTaskbar = My.Settings.ShowInTaskbar
         If My.Settings.ShowOnStartup Then repoList.Show()
@@ -91,27 +91,47 @@ Public Class MainController
         ni.Visible = True
     End Sub
 
-    Private Sub setRepositories()
+    Private Async Function setRepositories() As Task
         parentDirectories.Clear()
-        repositories.ForEach(Sub(x) x.Dispose())
-        repositories.Clear()
 
         Dim paths As List(Of String) = My.Settings.ParentDirectories.Split("|", options:=StringSplitOptions.RemoveEmptyEntries).ToList
         paths.ForEach(Sub(path)
                           Dim di As New DirectoryInfo(path)
                           If di.Exists Then parentDirectories.Add(di)
                       End Sub)
-        parentDirectories.ForEach(Sub(parent) repositories.AddRange(getRepositories(parent)))
 
-        For Each repo In repositories
+        Dim tmpRepositories As New List(Of Repository)
+        parentDirectories.ForEach(Sub(parent) tmpRepositories.AddRange(getRepositories(parent)))
+
+        Dim remRepositories As New List(Of Repository)
+        For Each repoOld In repositories
+            If tmpRepositories.Select(Function(x) x.Location.FullName).Contains(repoOld.Location.FullName) = False Then
+                remRepositories.Add(repoOld)
+            End If
+        Next
+        remRepositories.ForEach(Sub(repo)
+                                    repositories.Remove(repo)
+                                    repo.Dispose()
+                                End Sub)
+
+        Dim newRepositories As New List(Of Repository)
+        For Each repoNew In tmpRepositories
+            If repositories.Select(Function(x) x.Location.FullName).Contains(repoNew.Location.FullName) = False Then
+                newRepositories.Add(repoNew)
+            End If
+        Next
+        repositories.AddRange(newRepositories)
+
+        For Each repo In newRepositories
             AddHandler repo.UpdateFinished, Sub()
                                                 UpdateIcon()
                                             End Sub
             repo.UpdateLocalData()
         Next
 
-        repoList.SetRepositories(repositories)
-    End Sub
+
+        repoList.SetRepositories(repositories, remRepositories, newRepositories)
+    End Function
 
 
     Public Sub UpdateIcon()
@@ -123,8 +143,8 @@ Public Class MainController
         End If
     End Sub
 
-    Friend Sub ReloadRepos()
-        setRepositories()
+    Friend Async Sub ReloadRepos()
+        Await setRepositories()
     End Sub
 
     Public Sub SyncAllRemoteRepositories()

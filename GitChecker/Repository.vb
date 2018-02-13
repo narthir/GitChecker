@@ -60,7 +60,7 @@ Public Class Repository
     Public Event UpdateFinished(sender As Repository)
     Public Event UpdateStarted(sender As Repository)
 
-    Async Sub UpdateLocalData()
+    Async Function UpdateLocalData() As Task
         Try
             RaiseEvent UpdateStarted(Me)
             watcher.EnableRaisingEvents = False
@@ -70,7 +70,7 @@ Public Class Repository
             watcher.EnableRaisingEvents = True
             RaiseEvent UpdateFinished(Me)
         End Try
-    End Sub
+    End Function
     Private Async Function UpdateUncommitedState() As Task
         Try
             Dim proc = getGitProc()

@@ -26,7 +26,8 @@
 
     End Sub
 
-    Public Sub SetRepositories(repos As List(Of Repository))
+    Public Sub SetRepositories(repos As List(Of Repository), removedRepos As List(Of Repository), newRepos As List(Of Repository))
+        FLP_RepositoryList.InvokeGUI(Sub() FLP_RepositoryList.SuspendLayout())
         For Each repoItem In repoItems
             FLP_RepositoryList.InvokeGUI(Sub()
                                              FLP_RepositoryList.Controls.Remove(repoItem)
@@ -48,6 +49,7 @@
         repoItems.ForEach(Sub(x)
                               FLP_RepositoryList.InvokeGUI(Sub() FLP_RepositoryList.Controls.Add(x))
                           End Sub)
+        FLP_RepositoryList.InvokeGUI(Sub() FLP_RepositoryList.ResumeLayout())
         filter()
     End Sub
 

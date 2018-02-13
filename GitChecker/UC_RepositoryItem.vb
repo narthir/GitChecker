@@ -27,7 +27,7 @@
                                                                       End Sub)
                                                      End If
                                                  End Sub
-
+        RefreshControlData()
     End Sub
 
     Sub RefreshControlData()
