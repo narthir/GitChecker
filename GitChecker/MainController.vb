@@ -182,4 +182,12 @@ Public Class MainController
         Environment.Exit(0)
     End Sub
 
+    Protected Overrides Sub Dispose(disposing As Boolean)
+        MyBase.Dispose(disposing)
+        Task.Run(Sub()
+                     Threading.Thread.Sleep(2000)
+                     Environment.Exit(0)
+                 End Sub)
+    End Sub
+
 End Class
