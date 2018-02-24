@@ -203,6 +203,7 @@ Partial Class UC_RepositoryItem
         '
         Me.P_Line.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TLP_Main.SetColumnSpan(Me.P_Line, 3)
+        Me.P_Line.Dock = System.Windows.Forms.DockStyle.Fill
         Me.P_Line.Location = New System.Drawing.Point(13, 87)
         Me.P_Line.Margin = New System.Windows.Forms.Padding(13, 3, 13, 3)
         Me.P_Line.Name = "P_Line"

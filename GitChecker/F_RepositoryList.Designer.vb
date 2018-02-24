@@ -27,21 +27,21 @@ Partial Class F_RepositoryList
         Me.TLP_Main = New System.Windows.Forms.TableLayoutPanel()
         Me.FLP_RepositoryList = New System.Windows.Forms.FlowLayoutPanel()
         Me.TLP_Options = New System.Windows.Forms.TableLayoutPanel()
+        Me.TLP_Filter = New System.Windows.Forms.TableLayoutPanel()
+        Me.TE_Filter = New System.Windows.Forms.TextBox()
+        Me.P_Header = New System.Windows.Forms.Panel()
         Me.B_Refresh = New System.Windows.Forms.Button()
         Me.B_Settings = New System.Windows.Forms.Button()
         Me.B_Pin = New System.Windows.Forms.Button()
-        Me.TLP_Filter = New System.Windows.Forms.TableLayoutPanel()
         Me.B_FilterOnlyChanged = New System.Windows.Forms.Button()
-        Me.TE_Filter = New System.Windows.Forms.TextBox()
         Me.PB_Filter = New System.Windows.Forms.PictureBox()
-        Me.P_Header = New System.Windows.Forms.Panel()
         Me.B_Close = New System.Windows.Forms.Button()
         Me.MainPanel.SuspendLayout()
         Me.TLP_Main.SuspendLayout()
         Me.TLP_Options.SuspendLayout()
         Me.TLP_Filter.SuspendLayout()
-        CType(Me.PB_Filter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.P_Header.SuspendLayout()
+        CType(Me.PB_Filter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MainPanel
@@ -106,44 +106,6 @@ Partial Class F_RepositoryList
         Me.TLP_Options.Size = New System.Drawing.Size(452, 32)
         Me.TLP_Options.TabIndex = 3
         '
-        'B_Refresh
-        '
-        Me.B_Refresh.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.B_Refresh.BackgroundImage = Global.GitChecker.My.Resources.Resources.sinchronize_16
-        Me.B_Refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.B_Refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_Refresh.Location = New System.Drawing.Point(361, 3)
-        Me.B_Refresh.Margin = New System.Windows.Forms.Padding(13, 3, 13, 3)
-        Me.B_Refresh.Name = "B_Refresh"
-        Me.B_Refresh.Size = New System.Drawing.Size(26, 26)
-        Me.B_Refresh.TabIndex = 1
-        Me.B_Refresh.UseVisualStyleBackColor = True
-        '
-        'B_Settings
-        '
-        Me.B_Settings.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.B_Settings.BackgroundImage = Global.GitChecker.My.Resources.Resources.settings_5_16
-        Me.B_Settings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.B_Settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_Settings.Location = New System.Drawing.Point(413, 3)
-        Me.B_Settings.Margin = New System.Windows.Forms.Padding(13, 3, 13, 3)
-        Me.B_Settings.Name = "B_Settings"
-        Me.B_Settings.Size = New System.Drawing.Size(26, 26)
-        Me.B_Settings.TabIndex = 0
-        Me.B_Settings.UseVisualStyleBackColor = True
-        '
-        'B_Pin
-        '
-        Me.B_Pin.BackgroundImage = Global.GitChecker.My.Resources.Resources.pin_3_16
-        Me.B_Pin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.B_Pin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_Pin.Location = New System.Drawing.Point(309, 3)
-        Me.B_Pin.Margin = New System.Windows.Forms.Padding(13, 3, 13, 3)
-        Me.B_Pin.Name = "B_Pin"
-        Me.B_Pin.Size = New System.Drawing.Size(26, 26)
-        Me.B_Pin.TabIndex = 0
-        Me.B_Pin.UseVisualStyleBackColor = True
-        '
         'TLP_Filter
         '
         Me.TLP_Filter.ColumnCount = 3
@@ -161,18 +123,6 @@ Partial Class F_RepositoryList
         Me.TLP_Filter.Size = New System.Drawing.Size(231, 32)
         Me.TLP_Filter.TabIndex = 2
         '
-        'B_FilterOnlyChanged
-        '
-        Me.B_FilterOnlyChanged.BackgroundImage = Global.GitChecker.My.Resources.Resources.edit_12_16
-        Me.B_FilterOnlyChanged.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.B_FilterOnlyChanged.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_FilterOnlyChanged.Location = New System.Drawing.Point(185, 3)
-        Me.B_FilterOnlyChanged.Margin = New System.Windows.Forms.Padding(1, 3, 13, 3)
-        Me.B_FilterOnlyChanged.Name = "B_FilterOnlyChanged"
-        Me.B_FilterOnlyChanged.Size = New System.Drawing.Size(33, 26)
-        Me.B_FilterOnlyChanged.TabIndex = 3
-        Me.B_FilterOnlyChanged.UseVisualStyleBackColor = True
-        '
         'TE_Filter
         '
         Me.TE_Filter.Anchor = System.Windows.Forms.AnchorStyles.Left
@@ -183,16 +133,6 @@ Partial Class F_RepositoryList
         Me.TE_Filter.Name = "TE_Filter"
         Me.TE_Filter.Size = New System.Drawing.Size(147, 23)
         Me.TE_Filter.TabIndex = 0
-        '
-        'PB_Filter
-        '
-        Me.PB_Filter.BackgroundImage = Global.GitChecker.My.Resources.Resources.search_15_16
-        Me.PB_Filter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PB_Filter.Location = New System.Drawing.Point(3, 3)
-        Me.PB_Filter.Name = "PB_Filter"
-        Me.PB_Filter.Size = New System.Drawing.Size(31, 26)
-        Me.PB_Filter.TabIndex = 1
-        Me.PB_Filter.TabStop = False
         '
         'P_Header
         '
@@ -205,11 +145,76 @@ Partial Class F_RepositoryList
         Me.P_Header.Size = New System.Drawing.Size(458, 38)
         Me.P_Header.TabIndex = 4
         '
+        'B_Refresh
+        '
+        Me.B_Refresh.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.B_Refresh.BackgroundImage = Global.GitChecker.My.Resources.Resources.sinchronize_16
+        Me.B_Refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.B_Refresh.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro
+        Me.B_Refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.B_Refresh.Location = New System.Drawing.Point(361, 3)
+        Me.B_Refresh.Margin = New System.Windows.Forms.Padding(13, 3, 13, 3)
+        Me.B_Refresh.Name = "B_Refresh"
+        Me.B_Refresh.Size = New System.Drawing.Size(26, 26)
+        Me.B_Refresh.TabIndex = 1
+        Me.B_Refresh.UseVisualStyleBackColor = True
+        '
+        'B_Settings
+        '
+        Me.B_Settings.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.B_Settings.BackgroundImage = Global.GitChecker.My.Resources.Resources.settings_5_16
+        Me.B_Settings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.B_Settings.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro
+        Me.B_Settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.B_Settings.Location = New System.Drawing.Point(413, 3)
+        Me.B_Settings.Margin = New System.Windows.Forms.Padding(13, 3, 13, 3)
+        Me.B_Settings.Name = "B_Settings"
+        Me.B_Settings.Size = New System.Drawing.Size(26, 26)
+        Me.B_Settings.TabIndex = 0
+        Me.B_Settings.UseVisualStyleBackColor = True
+        '
+        'B_Pin
+        '
+        Me.B_Pin.BackgroundImage = Global.GitChecker.My.Resources.Resources.pin_3_16
+        Me.B_Pin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.B_Pin.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro
+        Me.B_Pin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.B_Pin.Location = New System.Drawing.Point(309, 3)
+        Me.B_Pin.Margin = New System.Windows.Forms.Padding(13, 3, 13, 3)
+        Me.B_Pin.Name = "B_Pin"
+        Me.B_Pin.Size = New System.Drawing.Size(26, 26)
+        Me.B_Pin.TabIndex = 0
+        Me.B_Pin.UseVisualStyleBackColor = True
+        '
+        'B_FilterOnlyChanged
+        '
+        Me.B_FilterOnlyChanged.BackgroundImage = Global.GitChecker.My.Resources.Resources.edit_12_16
+        Me.B_FilterOnlyChanged.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.B_FilterOnlyChanged.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro
+        Me.B_FilterOnlyChanged.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.B_FilterOnlyChanged.Location = New System.Drawing.Point(185, 3)
+        Me.B_FilterOnlyChanged.Margin = New System.Windows.Forms.Padding(1, 3, 13, 3)
+        Me.B_FilterOnlyChanged.Name = "B_FilterOnlyChanged"
+        Me.B_FilterOnlyChanged.Size = New System.Drawing.Size(33, 26)
+        Me.B_FilterOnlyChanged.TabIndex = 3
+        Me.B_FilterOnlyChanged.UseVisualStyleBackColor = True
+        '
+        'PB_Filter
+        '
+        Me.PB_Filter.BackgroundImage = Global.GitChecker.My.Resources.Resources.search_15_16
+        Me.PB_Filter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PB_Filter.Location = New System.Drawing.Point(3, 3)
+        Me.PB_Filter.Name = "PB_Filter"
+        Me.PB_Filter.Size = New System.Drawing.Size(31, 26)
+        Me.PB_Filter.TabIndex = 1
+        Me.PB_Filter.TabStop = False
+        '
         'B_Close
         '
         Me.B_Close.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.B_Close.BackgroundImage = CType(resources.GetObject("B_Close.BackgroundImage"), System.Drawing.Image)
         Me.B_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.B_Close.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray
         Me.B_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.B_Close.Location = New System.Drawing.Point(418, 5)
         Me.B_Close.Name = "B_Close"
@@ -234,8 +239,8 @@ Partial Class F_RepositoryList
         Me.TLP_Options.ResumeLayout(False)
         Me.TLP_Filter.ResumeLayout(False)
         Me.TLP_Filter.PerformLayout()
-        CType(Me.PB_Filter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.P_Header.ResumeLayout(False)
+        CType(Me.PB_Filter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
