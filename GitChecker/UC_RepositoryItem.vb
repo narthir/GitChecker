@@ -72,4 +72,10 @@
                          End Sub)
         End If
     End Sub
+
+    Private Sub B_OpenDirectory_Click(sender As Object, e As EventArgs) Handles B_OpenDirectory.Click
+        Dim p As New Process
+        p.StartInfo = New ProcessStartInfo(Repository.Location.FullName)
+        p.Start()
+    End Sub
 End Class

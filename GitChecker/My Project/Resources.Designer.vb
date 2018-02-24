@@ -93,6 +93,26 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property folder_3_16() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("folder_3_16", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property folder_3_16_gray() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("folder_3_16_gray", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property list_rich_16() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("list_rich_16", resourceCulture)
@@ -176,6 +196,16 @@ Namespace My.Resources
         Friend ReadOnly Property sinchronize_16() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("sinchronize_16", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property sinchronize_16_gray() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("sinchronize_16_gray", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property
