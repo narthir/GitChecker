@@ -67,7 +67,9 @@ Public Class MainController
 
 
         AddHandler remoteRefreshTimer.Tick, Sub()
-                                                SyncAllRemoteRepositories()
+                                                Task.Run(Sub()
+                                                             SyncAllRemoteRepositories()
+                                                         End Sub)
                                             End Sub
         Task.Run(Sub()
                      Threading.Thread.Sleep(10000)
