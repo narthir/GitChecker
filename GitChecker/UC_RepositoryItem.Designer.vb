@@ -48,7 +48,7 @@ Partial Class UC_RepositoryItem
         Me.L_RepositoryName.AutoSize = True
         Me.L_RepositoryName.Font = New System.Drawing.Font("Segoe UI Semibold", 14.0!)
         Me.L_RepositoryName.LinkColor = System.Drawing.Color.Black
-        Me.L_RepositoryName.Location = New System.Drawing.Point(6, 13)
+        Me.L_RepositoryName.Location = New System.Drawing.Point(6, 6)
         Me.L_RepositoryName.Margin = New System.Windows.Forms.Padding(6)
         Me.L_RepositoryName.Name = "L_RepositoryName"
         Me.L_RepositoryName.Size = New System.Drawing.Size(172, 25)
@@ -72,7 +72,7 @@ Partial Class UC_RepositoryItem
         Me.TLP_Status.Controls.Add(Me.PB_PullCount, 2, 1)
         Me.TLP_Status.Controls.Add(Me.L_PushCount, 1, 1)
         Me.TLP_Status.Controls.Add(Me.L_PullCount, 3, 1)
-        Me.TLP_Status.Location = New System.Drawing.Point(517, 12)
+        Me.TLP_Status.Location = New System.Drawing.Point(517, 5)
         Me.TLP_Status.Margin = New System.Windows.Forms.Padding(3, 3, 33, 3)
         Me.TLP_Status.Name = "TLP_Status"
         Me.TLP_Status.RowCount = 2
@@ -171,18 +171,18 @@ Partial Class UC_RepositoryItem
         Me.TLP_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TLP_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TLP_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TLP_Main.Controls.Add(Me.B_SyncWithRemote, 2, 1)
-        Me.TLP_Main.Controls.Add(Me.L_RepositoryName, 0, 1)
-        Me.TLP_Main.Controls.Add(Me.TLP_Status, 1, 1)
-        Me.TLP_Main.Controls.Add(Me.P_Line, 0, 0)
+        Me.TLP_Main.Controls.Add(Me.B_SyncWithRemote, 2, 0)
+        Me.TLP_Main.Controls.Add(Me.L_RepositoryName, 0, 0)
+        Me.TLP_Main.Controls.Add(Me.TLP_Status, 1, 0)
+        Me.TLP_Main.Controls.Add(Me.P_Line, 0, 1)
         Me.TLP_Main.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TLP_Main.Location = New System.Drawing.Point(0, 5)
         Me.TLP_Main.Margin = New System.Windows.Forms.Padding(0)
         Me.TLP_Main.Name = "TLP_Main"
-        Me.TLP_Main.RowCount = 3
-        Me.TLP_Main.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TLP_Main.RowCount = 2
         Me.TLP_Main.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TLP_Main.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TLP_Main.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TLP_Main.Size = New System.Drawing.Size(732, 91)
         Me.TLP_Main.TabIndex = 9
         '
@@ -193,7 +193,7 @@ Partial Class UC_RepositoryItem
         Me.B_SyncWithRemote.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.B_SyncWithRemote.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.B_SyncWithRemote.Image = Global.GitChecker.My.Resources.Resources.sinchronize_16
-        Me.B_SyncWithRemote.Location = New System.Drawing.Point(703, 10)
+        Me.B_SyncWithRemote.Location = New System.Drawing.Point(703, 3)
         Me.B_SyncWithRemote.Name = "B_SyncWithRemote"
         Me.B_SyncWithRemote.Size = New System.Drawing.Size(26, 26)
         Me.B_SyncWithRemote.TabIndex = 4
@@ -203,10 +203,10 @@ Partial Class UC_RepositoryItem
         '
         Me.P_Line.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TLP_Main.SetColumnSpan(Me.P_Line, 3)
-        Me.P_Line.Dock = System.Windows.Forms.DockStyle.Top
-        Me.P_Line.Location = New System.Drawing.Point(3, 3)
+        Me.P_Line.Location = New System.Drawing.Point(13, 87)
+        Me.P_Line.Margin = New System.Windows.Forms.Padding(13, 3, 13, 3)
         Me.P_Line.Name = "P_Line"
-        Me.P_Line.Size = New System.Drawing.Size(726, 1)
+        Me.P_Line.Size = New System.Drawing.Size(706, 1)
         Me.P_Line.TabIndex = 11
         '
         'UC_RepositoryItem
