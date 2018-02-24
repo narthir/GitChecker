@@ -3,6 +3,9 @@
     Private repoItems As New List(Of UC_RepositoryItem)
     Private isPinned As Boolean = False
     Private filterOnlyChanged As Boolean = False
+    Private drag As Boolean
+    Private mousex As Integer
+    Private mousey As Integer
 
     Public Sub New()
 
@@ -34,12 +37,10 @@
                                              repoItem.Dispose()
                                          End Sub)
         Next
-        Dim isTopItem As Boolean = True
         For Each repo In repos.OrderBy(Function(x) x.Name)
-            Dim uc As New UC_RepositoryItem(repo, isTopItem)
+            Dim uc As New UC_RepositoryItem(repo)
             uc.Width = FLP_RepositoryList.Width - 20
             repoItems.Add(uc)
-            isTopItem = False
             AddHandler repo.UpdateFinished, Sub(r)
                                                 If uc.IsAlive Then
                                                     uc.InvokeGUI(Sub() uc.Visible = isRepoItemVisible(uc))
@@ -136,5 +137,22 @@
 
     Private Sub B_FilterWithChanges_Click(sender As Object, e As EventArgs) Handles B_FilterOnlyChanged.Click
         setFilterChanged(True)
+    End Sub
+
+    Private Sub DragStart(sender As Object, e As MouseEventArgs) Handles P_Header.MouseDown
+        drag = True
+        mousex = Cursor.Position.X - Me.Left
+        mousey = Cursor.Position.Y - Me.Top
+    End Sub
+
+    Private Sub DragMove(sender As Object, e As MouseEventArgs) Handles P_Header.MouseMove
+        If drag Then
+            Me.Top = Cursor.Position.Y - mousey
+            Me.Left = Cursor.Position.X - mousex
+        End If
+    End Sub
+
+    Private Sub DragStop(sender As Object, e As MouseEventArgs) Handles P_Header.MouseUp
+        drag = False
     End Sub
 End Class

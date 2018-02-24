@@ -1,17 +1,14 @@
 ﻿Public Class UC_RepositoryItem
 
     Public ReadOnly Repository As Repository
-    Private isTopItem As Boolean = False
 
-    Public Sub New(repository As Repository, isTopItem As Boolean)
+    Public Sub New(repository As Repository)
 
         ' This call is required by the designer.
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
 
-        Me.isTopItem = isTopItem
-        P_Line.Visible = Not isTopItem
         Me.Repository = repository
         L_RepositoryName.Text = String.Format("{0}", repository.Name)
 

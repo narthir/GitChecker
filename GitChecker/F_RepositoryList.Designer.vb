@@ -196,7 +196,7 @@ Partial Class F_RepositoryList
         '
         'P_Header
         '
-        Me.P_Header.BackColor = System.Drawing.Color.LightGray
+        Me.P_Header.BackColor = System.Drawing.Color.Gainsboro
         Me.P_Header.Controls.Add(Me.B_Close)
         Me.P_Header.Dock = System.Windows.Forms.DockStyle.Fill
         Me.P_Header.Location = New System.Drawing.Point(1, 1)

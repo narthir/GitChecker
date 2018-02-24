@@ -1,5 +1,9 @@
 ﻿Public Class F_Settings
 
+    Private drag As Boolean
+    Private mousex As Integer
+    Private mousey As Integer
+
     Public Sub New()
 
         ' This call is required by the designer.
@@ -75,4 +79,22 @@
             End If
         End Using
     End Sub
+
+    Private Sub DragStart(sender As Object, e As MouseEventArgs) Handles P_Header.MouseDown
+        drag = True
+        mousex = Cursor.Position.X - Me.Left
+        mousey = Cursor.Position.Y - Me.Top
+    End Sub
+
+    Private Sub DragMove(sender As Object, e As MouseEventArgs) Handles P_Header.MouseMove
+        If drag Then
+            Me.Top = Cursor.Position.Y - mousey
+            Me.Left = Cursor.Position.X - mousex
+        End If
+    End Sub
+
+    Private Sub DragStop(sender As Object, e As MouseEventArgs) Handles P_Header.MouseUp
+        drag = False
+    End Sub
+
 End Class
