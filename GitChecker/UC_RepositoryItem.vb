@@ -78,4 +78,8 @@
         p.StartInfo = New ProcessStartInfo(Repository.Location.FullName)
         p.Start()
     End Sub
+
+    Private Sub PB_PullCount_Click(sender As Object, e As EventArgs) Handles PB_PullCount.Click
+        Repository.PullAll
+    End Sub
 End Class

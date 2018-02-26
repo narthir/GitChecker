@@ -108,7 +108,28 @@ Public Class Repository
         End Try
     End Function
 
+    Public Async Function PullAll() As Task
+        Try
+            RaiseEvent UpdateStarted(Me)
+            Dim results As New List(Of String)
+            Dim proc = getGitProc()
+            proc.StartInfo.Arguments &= "pull --all"
+            Using cc As New ConsoleController(proc, Sub(x)
+                                                        results.Add(x)
+                                                    End Sub)
+                Await cc.Run
+            End Using
+            results.DebugWriteLineAll(Me.Name & " : PulledAll : {0}")
+            RaiseEvent UpdateFinished(Me)
+            Await UpdateLocalBranches()
+        Catch ex As Exception
+            LogError(ex)
+            Throw
+        End Try
+    End Function
+
     Private Async Function UpdateLocalBranches() As Task
+        RaiseEvent UpdateStarted(Me)
         Try
             Dim proc = getGitProc()
             proc.StartInfo.Arguments &= "for-each-ref --format=""%(HEAD)|%(refname:short)|%(upstream:track)"" refs/heads"
@@ -154,6 +175,7 @@ Public Class Repository
         Catch ex As Exception
             LogError(ex)
         End Try
+        RaiseEvent UpdateFinished(Me)
     End Function
     Async Function UpdateRemoteData() As Task
         Try

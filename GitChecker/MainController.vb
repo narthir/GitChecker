@@ -145,9 +145,12 @@ Public Class MainController
         End If
     End Sub
 
-    Friend Async Sub ReloadRepos()
+    Friend Async Function ReloadRepos() As Task
         Await setRepositories()
-    End Sub
+        Await Task.Run(Sub()
+                           SyncAllRemoteRepositories()
+                       End Sub)
+    End Function
 
     Public Sub SyncAllRemoteRepositories()
         Debug.WriteLine("----  Starting  SyncAllRemoteRepositories   -----")

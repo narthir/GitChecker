@@ -101,8 +101,17 @@
         setPinned(True)
     End Sub
 
-    Private Sub B_Refresh_Click(sender As Object, e As EventArgs) Handles B_Refresh.Click
-        Task.Run(Sub() MainController.I.ReloadRepos())
+    Private Async Sub B_Refresh_Click(sender As Object, e As EventArgs) Handles B_Refresh.Click
+        Try
+            B_Refresh.BackColor = Color.Orange
+            B_Refresh.Enabled = False
+            Await MainController.I.ReloadRepos
+        Catch ex As Exception
+            LogError(ex)
+        Finally
+            B_Refresh.Enabled = True
+            B_Refresh.BackColor = Color.Transparent
+        End Try
     End Sub
 
     Private Sub TE_Filter_TextChanged(sender As Object, e As EventArgs) Handles TE_Filter.TextChanged
@@ -154,5 +163,15 @@
 
     Private Sub DragStop(sender As Object, e As MouseEventArgs) Handles P_Header.MouseUp
         drag = False
+    End Sub
+
+    Private Async Sub B_PullAll_Click(sender As Object, e As EventArgs) Handles B_PullAll.Click
+        If MsgBox("Pull all branches for all repositories?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
+            For Each repo In repoItems.Select(Function(x) x.Repository)
+                If repo.UncommitedStates.Any = False AndAlso repo.LocalBranches.Select(Function(x) x.Behind).Sum > 0 Then
+                    Await repo.PullAll()
+                End If
+            Next
+        End If
     End Sub
 End Class

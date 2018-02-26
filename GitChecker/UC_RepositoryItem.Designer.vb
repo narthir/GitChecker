@@ -25,25 +25,25 @@ Partial Class UC_RepositoryItem
         Me.L_RepositoryName = New System.Windows.Forms.LinkLabel()
         Me.TLP_Status = New System.Windows.Forms.TableLayoutPanel()
         Me.L_HasUncommitedMark = New System.Windows.Forms.Label()
+        Me.PB_HasUncommited = New System.Windows.Forms.PictureBox()
+        Me.PB_HasUntracked = New System.Windows.Forms.PictureBox()
         Me.L_HasUntrackedMark = New System.Windows.Forms.Label()
+        Me.PB_PushCount = New System.Windows.Forms.PictureBox()
+        Me.PB_PullCount = New System.Windows.Forms.PictureBox()
         Me.L_PushCount = New System.Windows.Forms.Label()
         Me.L_PullCount = New System.Windows.Forms.Label()
         Me.TLP_Main = New System.Windows.Forms.TableLayoutPanel()
         Me.P_Line = New System.Windows.Forms.Panel()
         Me.TLP_Functions = New System.Windows.Forms.TableLayoutPanel()
-        Me.PB_HasUncommited = New System.Windows.Forms.PictureBox()
-        Me.PB_HasUntracked = New System.Windows.Forms.PictureBox()
-        Me.PB_PushCount = New System.Windows.Forms.PictureBox()
-        Me.PB_PullCount = New System.Windows.Forms.PictureBox()
         Me.B_OpenDirectory = New System.Windows.Forms.Button()
         Me.B_SyncWithRemote = New System.Windows.Forms.Button()
         Me.TLP_Status.SuspendLayout()
-        Me.TLP_Main.SuspendLayout()
-        Me.TLP_Functions.SuspendLayout()
         CType(Me.PB_HasUncommited, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PB_HasUntracked, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PB_PushCount, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PB_PullCount, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TLP_Main.SuspendLayout()
+        Me.TLP_Functions.SuspendLayout()
         Me.SuspendLayout()
         '
         'L_RepositoryName
@@ -95,6 +95,28 @@ Partial Class UC_RepositoryItem
         Me.L_HasUncommitedMark.TabIndex = 15
         Me.L_HasUncommitedMark.Text = "-"
         '
+        'PB_HasUncommited
+        '
+        Me.PB_HasUncommited.BackgroundImage = Global.GitChecker.My.Resources.Resources.list_rich_16
+        Me.PB_HasUncommited.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PB_HasUncommited.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PB_HasUncommited.Location = New System.Drawing.Point(3, 3)
+        Me.PB_HasUncommited.Name = "PB_HasUncommited"
+        Me.PB_HasUncommited.Size = New System.Drawing.Size(26, 31)
+        Me.PB_HasUncommited.TabIndex = 12
+        Me.PB_HasUncommited.TabStop = False
+        '
+        'PB_HasUntracked
+        '
+        Me.PB_HasUntracked.BackgroundImage = Global.GitChecker.My.Resources.Resources.new_16
+        Me.PB_HasUntracked.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PB_HasUntracked.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PB_HasUntracked.Location = New System.Drawing.Point(67, 3)
+        Me.PB_HasUntracked.Name = "PB_HasUntracked"
+        Me.PB_HasUntracked.Size = New System.Drawing.Size(26, 31)
+        Me.PB_HasUntracked.TabIndex = 9
+        Me.PB_HasUntracked.TabStop = False
+        '
         'L_HasUntrackedMark
         '
         Me.L_HasUntrackedMark.Anchor = System.Windows.Forms.AnchorStyles.None
@@ -104,6 +126,28 @@ Partial Class UC_RepositoryItem
         Me.L_HasUntrackedMark.Size = New System.Drawing.Size(12, 15)
         Me.L_HasUntrackedMark.TabIndex = 13
         Me.L_HasUntrackedMark.Text = "-"
+        '
+        'PB_PushCount
+        '
+        Me.PB_PushCount.BackgroundImage = Global.GitChecker.My.Resources.Resources.upload_3_16
+        Me.PB_PushCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PB_PushCount.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PB_PushCount.Location = New System.Drawing.Point(3, 40)
+        Me.PB_PushCount.Name = "PB_PushCount"
+        Me.PB_PushCount.Size = New System.Drawing.Size(26, 31)
+        Me.PB_PushCount.TabIndex = 11
+        Me.PB_PushCount.TabStop = False
+        '
+        'PB_PullCount
+        '
+        Me.PB_PullCount.BackgroundImage = Global.GitChecker.My.Resources.Resources.download_2_16
+        Me.PB_PullCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.PB_PullCount.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.PB_PullCount.Location = New System.Drawing.Point(67, 40)
+        Me.PB_PullCount.Name = "PB_PullCount"
+        Me.PB_PullCount.Size = New System.Drawing.Size(26, 31)
+        Me.PB_PullCount.TabIndex = 10
+        Me.PB_PullCount.TabStop = False
         '
         'L_PushCount
         '
@@ -171,50 +215,6 @@ Partial Class UC_RepositoryItem
         Me.TLP_Functions.Size = New System.Drawing.Size(31, 84)
         Me.TLP_Functions.TabIndex = 12
         '
-        'PB_HasUncommited
-        '
-        Me.PB_HasUncommited.BackgroundImage = Global.GitChecker.My.Resources.Resources.list_rich_16
-        Me.PB_HasUncommited.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PB_HasUncommited.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PB_HasUncommited.Location = New System.Drawing.Point(3, 3)
-        Me.PB_HasUncommited.Name = "PB_HasUncommited"
-        Me.PB_HasUncommited.Size = New System.Drawing.Size(26, 31)
-        Me.PB_HasUncommited.TabIndex = 12
-        Me.PB_HasUncommited.TabStop = False
-        '
-        'PB_HasUntracked
-        '
-        Me.PB_HasUntracked.BackgroundImage = Global.GitChecker.My.Resources.Resources.new_16
-        Me.PB_HasUntracked.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PB_HasUntracked.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PB_HasUntracked.Location = New System.Drawing.Point(67, 3)
-        Me.PB_HasUntracked.Name = "PB_HasUntracked"
-        Me.PB_HasUntracked.Size = New System.Drawing.Size(26, 31)
-        Me.PB_HasUntracked.TabIndex = 9
-        Me.PB_HasUntracked.TabStop = False
-        '
-        'PB_PushCount
-        '
-        Me.PB_PushCount.BackgroundImage = Global.GitChecker.My.Resources.Resources.upload_3_16
-        Me.PB_PushCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PB_PushCount.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PB_PushCount.Location = New System.Drawing.Point(3, 40)
-        Me.PB_PushCount.Name = "PB_PushCount"
-        Me.PB_PushCount.Size = New System.Drawing.Size(26, 31)
-        Me.PB_PushCount.TabIndex = 11
-        Me.PB_PushCount.TabStop = False
-        '
-        'PB_PullCount
-        '
-        Me.PB_PullCount.BackgroundImage = Global.GitChecker.My.Resources.Resources.download_2_16
-        Me.PB_PullCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.PB_PullCount.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.PB_PullCount.Location = New System.Drawing.Point(67, 40)
-        Me.PB_PullCount.Name = "PB_PullCount"
-        Me.PB_PullCount.Size = New System.Drawing.Size(26, 31)
-        Me.PB_PullCount.TabIndex = 10
-        Me.PB_PullCount.TabStop = False
-        '
         'B_OpenDirectory
         '
         Me.B_OpenDirectory.Anchor = System.Windows.Forms.AnchorStyles.Top
@@ -256,13 +256,13 @@ Partial Class UC_RepositoryItem
         Me.Size = New System.Drawing.Size(732, 96)
         Me.TLP_Status.ResumeLayout(False)
         Me.TLP_Status.PerformLayout()
-        Me.TLP_Main.ResumeLayout(False)
-        Me.TLP_Main.PerformLayout()
-        Me.TLP_Functions.ResumeLayout(False)
         CType(Me.PB_HasUncommited, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PB_HasUntracked, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PB_PushCount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PB_PullCount, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TLP_Main.ResumeLayout(False)
+        Me.TLP_Main.PerformLayout()
+        Me.TLP_Functions.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
