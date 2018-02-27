@@ -54,15 +54,6 @@
         filter()
     End Sub
 
-    Private Sub F_RepoList_Shown(sender As Object, e As EventArgs) Handles MyBase.VisibleChanged
-        If Me.Visible = True Then
-            Dim s As Screen = Screen.FromPoint(New Point(Cursor.Position.X, Cursor.Position.Y))
-            Me.Height = s.WorkingArea.Height - 20
-            Me.Location = New Point(s.Bounds.Width - Me.Width - 10, s.WorkingArea.Height - Me.Height - 10)
-            filter()
-        End If
-    End Sub
-
     Private Sub setPinned(toggle As Boolean)
         If toggle = True Then Me.isPinned = Not Me.isPinned
         If Me.isPinned Then
@@ -107,7 +98,7 @@
             B_Refresh.Enabled = False
             Await MainController.I.ReloadRepos
         Catch ex As Exception
-            LogError(ex)
+            Log(ex)
         Finally
             B_Refresh.Enabled = True
             B_Refresh.BackColor = Color.Transparent
@@ -173,5 +164,16 @@
                 End If
             Next
         End If
+    End Sub
+
+    Private Sub FLP_RepositoryList_VisibleChanged(sender As Object, e As EventArgs) Handles FLP_RepositoryList.VisibleChanged
+        filter()
+        My.Settings.ListLocation = Me.Location
+        My.Settings.Save()
+    End Sub
+
+    Private Sub F_RepositoryList_LocationChanged(sender As Object, e As EventArgs) Handles MyBase.LocationChanged
+        My.Settings.ListLocation = Me.Location
+        My.Settings.Save()
     End Sub
 End Class

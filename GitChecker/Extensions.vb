@@ -11,9 +11,15 @@ Public Module Extensions
 
     <Extension> Public Sub DebugWriteLineAll(this As List(Of String), Optional formatString As String = "")
         If Len(formatString) = 0 Then
-            this.ForEach(Sub(x) Debug.WriteLine(x))
+            this.ForEach(Sub(x)
+                             Debug.WriteLine(x)
+                             Main.Log(x)
+                         End Sub)
         Else
-            this.ForEach(Sub(x) Debug.WriteLine(String.Format(formatString, x)))
+            this.ForEach(Sub(x)
+                             Debug.WriteLine(String.Format(formatString, x))
+                             Main.Log(String.Format(formatString, x))
+                         End Sub)
         End If
     End Sub
 

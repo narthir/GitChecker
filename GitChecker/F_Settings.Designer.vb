@@ -28,25 +28,26 @@ Partial Class F_Settings
         Me.B_Save = New System.Windows.Forms.Button()
         Me.TLP_Main = New System.Windows.Forms.TableLayoutPanel()
         Me.P_Options = New System.Windows.Forms.Panel()
+        Me.B_RemoveParent = New System.Windows.Forms.Button()
+        Me.B_AddParent = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.LB_Parents = New System.Windows.Forms.ListBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TE_ExtToolArguments = New System.Windows.Forms.TextBox()
+        Me.B_SelectExtToolPath = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TE_ExtToolPath = New System.Windows.Forms.TextBox()
+        Me.B_SelectGitPath = New System.Windows.Forms.Button()
         Me.L_GitPath = New System.Windows.Forms.Label()
         Me.TE_GitPath = New System.Windows.Forms.TextBox()
         Me.L_Minutes = New System.Windows.Forms.Label()
         Me.NUD_RemoteRefreshInterval = New System.Windows.Forms.NumericUpDown()
         Me.L_RemoteRefreshInterval = New System.Windows.Forms.Label()
         Me.P_Header = New System.Windows.Forms.Panel()
-        Me.P_Main = New System.Windows.Forms.Panel()
-        Me.B_RemoveParent = New System.Windows.Forms.Button()
-        Me.B_AddParent = New System.Windows.Forms.Button()
-        Me.B_SelectExtToolPath = New System.Windows.Forms.Button()
-        Me.B_SelectGitPath = New System.Windows.Forms.Button()
         Me.B_Close = New System.Windows.Forms.Button()
         Me.P_Separator = New System.Windows.Forms.Panel()
+        Me.B_Log = New System.Windows.Forms.Button()
+        Me.P_Main = New System.Windows.Forms.Panel()
         Me.TLP_Main.SuspendLayout()
         Me.P_Options.SuspendLayout()
         CType(Me.NUD_RemoteRefreshInterval, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -62,7 +63,7 @@ Partial Class F_Settings
         Me.CB_ShowInTaskbar.Location = New System.Drawing.Point(9, 9)
         Me.CB_ShowInTaskbar.Name = "CB_ShowInTaskbar"
         Me.CB_ShowInTaskbar.Size = New System.Drawing.Size(109, 19)
-        Me.CB_ShowInTaskbar.TabIndex = 1
+        Me.CB_ShowInTaskbar.TabIndex = 0
         Me.CB_ShowInTaskbar.Text = "Show in Taskbar"
         Me.CB_ShowInTaskbar.UseVisualStyleBackColor = True
         '
@@ -82,12 +83,13 @@ Partial Class F_Settings
         '
         Me.B_Save.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.B_Save.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.B_Save.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro
+        Me.B_Save.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray
         Me.B_Save.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.B_Save.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.B_Save.Location = New System.Drawing.Point(333, 288)
+        Me.B_Save.Location = New System.Drawing.Point(349, 335)
+        Me.B_Save.Margin = New System.Windows.Forms.Padding(8)
         Me.B_Save.Name = "B_Save"
-        Me.B_Save.Size = New System.Drawing.Size(114, 46)
+        Me.B_Save.Size = New System.Drawing.Size(91, 35)
         Me.B_Save.TabIndex = 3
         Me.B_Save.Text = "Save"
         Me.B_Save.UseVisualStyleBackColor = False
@@ -102,6 +104,7 @@ Partial Class F_Settings
         Me.TLP_Main.Controls.Add(Me.B_Save, 1, 3)
         Me.TLP_Main.Controls.Add(Me.P_Header, 0, 0)
         Me.TLP_Main.Controls.Add(Me.P_Separator, 0, 1)
+        Me.TLP_Main.Controls.Add(Me.B_Log, 0, 3)
         Me.TLP_Main.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TLP_Main.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
         Me.TLP_Main.Location = New System.Drawing.Point(0, 0)
@@ -111,7 +114,7 @@ Partial Class F_Settings
         Me.TLP_Main.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TLP_Main.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TLP_Main.RowStyles.Add(New System.Windows.Forms.RowStyle())
-        Me.TLP_Main.Size = New System.Drawing.Size(450, 337)
+        Me.TLP_Main.Size = New System.Drawing.Size(448, 378)
         Me.TLP_Main.TabIndex = 4
         '
         'P_Options
@@ -136,8 +139,32 @@ Partial Class F_Settings
         Me.P_Options.Dock = System.Windows.Forms.DockStyle.Fill
         Me.P_Options.Location = New System.Drawing.Point(3, 41)
         Me.P_Options.Name = "P_Options"
-        Me.P_Options.Size = New System.Drawing.Size(324, 241)
-        Me.P_Options.TabIndex = 5
+        Me.P_Options.Size = New System.Drawing.Size(335, 283)
+        Me.P_Options.TabIndex = 0
+        '
+        'B_RemoveParent
+        '
+        Me.B_RemoveParent.BackgroundImage = Global.GitChecker.My.Resources.Resources.minus_16
+        Me.B_RemoveParent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.B_RemoveParent.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.B_RemoveParent.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!)
+        Me.B_RemoveParent.Location = New System.Drawing.Point(270, 243)
+        Me.B_RemoveParent.Name = "B_RemoveParent"
+        Me.B_RemoveParent.Size = New System.Drawing.Size(23, 23)
+        Me.B_RemoveParent.TabIndex = 17
+        Me.B_RemoveParent.UseVisualStyleBackColor = True
+        '
+        'B_AddParent
+        '
+        Me.B_AddParent.BackgroundImage = Global.GitChecker.My.Resources.Resources.plus_16
+        Me.B_AddParent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.B_AddParent.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.B_AddParent.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!)
+        Me.B_AddParent.Location = New System.Drawing.Point(270, 206)
+        Me.B_AddParent.Name = "B_AddParent"
+        Me.B_AddParent.Size = New System.Drawing.Size(23, 23)
+        Me.B_AddParent.TabIndex = 16
+        Me.B_AddParent.UseVisualStyleBackColor = True
         '
         'Label3
         '
@@ -177,6 +204,18 @@ Partial Class F_Settings
         Me.TE_ExtToolArguments.Size = New System.Drawing.Size(167, 23)
         Me.TE_ExtToolArguments.TabIndex = 12
         '
+        'B_SelectExtToolPath
+        '
+        Me.B_SelectExtToolPath.BackgroundImage = Global.GitChecker.My.Resources.Resources.exe_16
+        Me.B_SelectExtToolPath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.B_SelectExtToolPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.B_SelectExtToolPath.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!)
+        Me.B_SelectExtToolPath.Location = New System.Drawing.Point(234, 121)
+        Me.B_SelectExtToolPath.Name = "B_SelectExtToolPath"
+        Me.B_SelectExtToolPath.Size = New System.Drawing.Size(23, 23)
+        Me.B_SelectExtToolPath.TabIndex = 11
+        Me.B_SelectExtToolPath.UseVisualStyleBackColor = True
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -195,6 +234,18 @@ Partial Class F_Settings
         Me.TE_ExtToolPath.Name = "TE_ExtToolPath"
         Me.TE_ExtToolPath.Size = New System.Drawing.Size(167, 23)
         Me.TE_ExtToolPath.TabIndex = 9
+        '
+        'B_SelectGitPath
+        '
+        Me.B_SelectGitPath.BackgroundImage = Global.GitChecker.My.Resources.Resources.exe_16
+        Me.B_SelectGitPath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.B_SelectGitPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.B_SelectGitPath.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!)
+        Me.B_SelectGitPath.Location = New System.Drawing.Point(234, 92)
+        Me.B_SelectGitPath.Name = "B_SelectGitPath"
+        Me.B_SelectGitPath.Size = New System.Drawing.Size(23, 23)
+        Me.B_SelectGitPath.TabIndex = 8
+        Me.B_SelectGitPath.UseVisualStyleBackColor = True
         '
         'L_GitPath
         '
@@ -253,75 +304,17 @@ Partial Class F_Settings
         Me.P_Header.Location = New System.Drawing.Point(0, 0)
         Me.P_Header.Margin = New System.Windows.Forms.Padding(0)
         Me.P_Header.Name = "P_Header"
-        Me.P_Header.Size = New System.Drawing.Size(450, 37)
+        Me.P_Header.Size = New System.Drawing.Size(448, 37)
         Me.P_Header.TabIndex = 6
-        '
-        'P_Main
-        '
-        Me.P_Main.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.P_Main.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.P_Main.Controls.Add(Me.TLP_Main)
-        Me.P_Main.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.P_Main.Location = New System.Drawing.Point(0, 0)
-        Me.P_Main.Name = "P_Main"
-        Me.P_Main.Size = New System.Drawing.Size(452, 339)
-        Me.P_Main.TabIndex = 5
-        '
-        'B_RemoveParent
-        '
-        Me.B_RemoveParent.BackgroundImage = Global.GitChecker.My.Resources.Resources.minus_16
-        Me.B_RemoveParent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.B_RemoveParent.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_RemoveParent.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!)
-        Me.B_RemoveParent.Location = New System.Drawing.Point(270, 243)
-        Me.B_RemoveParent.Name = "B_RemoveParent"
-        Me.B_RemoveParent.Size = New System.Drawing.Size(23, 23)
-        Me.B_RemoveParent.TabIndex = 17
-        Me.B_RemoveParent.UseVisualStyleBackColor = True
-        '
-        'B_AddParent
-        '
-        Me.B_AddParent.BackgroundImage = Global.GitChecker.My.Resources.Resources.plus_16
-        Me.B_AddParent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.B_AddParent.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_AddParent.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!)
-        Me.B_AddParent.Location = New System.Drawing.Point(270, 206)
-        Me.B_AddParent.Name = "B_AddParent"
-        Me.B_AddParent.Size = New System.Drawing.Size(23, 23)
-        Me.B_AddParent.TabIndex = 16
-        Me.B_AddParent.UseVisualStyleBackColor = True
-        '
-        'B_SelectExtToolPath
-        '
-        Me.B_SelectExtToolPath.BackgroundImage = Global.GitChecker.My.Resources.Resources.exe_16
-        Me.B_SelectExtToolPath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.B_SelectExtToolPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_SelectExtToolPath.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!)
-        Me.B_SelectExtToolPath.Location = New System.Drawing.Point(234, 121)
-        Me.B_SelectExtToolPath.Name = "B_SelectExtToolPath"
-        Me.B_SelectExtToolPath.Size = New System.Drawing.Size(23, 23)
-        Me.B_SelectExtToolPath.TabIndex = 11
-        Me.B_SelectExtToolPath.UseVisualStyleBackColor = True
-        '
-        'B_SelectGitPath
-        '
-        Me.B_SelectGitPath.BackgroundImage = Global.GitChecker.My.Resources.Resources.exe_16
-        Me.B_SelectGitPath.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.B_SelectGitPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_SelectGitPath.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!)
-        Me.B_SelectGitPath.Location = New System.Drawing.Point(234, 92)
-        Me.B_SelectGitPath.Name = "B_SelectGitPath"
-        Me.B_SelectGitPath.Size = New System.Drawing.Size(23, 23)
-        Me.B_SelectGitPath.TabIndex = 8
-        Me.B_SelectGitPath.UseVisualStyleBackColor = True
         '
         'B_Close
         '
         Me.B_Close.Anchor = CType((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.B_Close.BackgroundImage = CType(resources.GetObject("B_Close.BackgroundImage"), System.Drawing.Image)
         Me.B_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.B_Close.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray
         Me.B_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_Close.Location = New System.Drawing.Point(414, 3)
+        Me.B_Close.Location = New System.Drawing.Point(412, 3)
         Me.B_Close.Name = "B_Close"
         Me.B_Close.Size = New System.Drawing.Size(32, 29)
         Me.B_Close.TabIndex = 0
@@ -335,18 +328,45 @@ Partial Class F_Settings
         Me.P_Separator.Location = New System.Drawing.Point(0, 37)
         Me.P_Separator.Margin = New System.Windows.Forms.Padding(0)
         Me.P_Separator.Name = "P_Separator"
-        Me.P_Separator.Size = New System.Drawing.Size(450, 1)
+        Me.P_Separator.Size = New System.Drawing.Size(448, 1)
         Me.P_Separator.TabIndex = 7
+        '
+        'B_Log
+        '
+        Me.B_Log.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.B_Log.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.B_Log.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray
+        Me.B_Log.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.B_Log.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.B_Log.Location = New System.Drawing.Point(8, 335)
+        Me.B_Log.Margin = New System.Windows.Forms.Padding(8)
+        Me.B_Log.Name = "B_Log"
+        Me.B_Log.Size = New System.Drawing.Size(91, 35)
+        Me.B_Log.TabIndex = 8
+        Me.B_Log.Text = "Log"
+        Me.B_Log.UseVisualStyleBackColor = False
+        '
+        'P_Main
+        '
+        Me.P_Main.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.P_Main.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.P_Main.Controls.Add(Me.TLP_Main)
+        Me.P_Main.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.P_Main.Location = New System.Drawing.Point(0, 0)
+        Me.P_Main.Name = "P_Main"
+        Me.P_Main.Size = New System.Drawing.Size(450, 380)
+        Me.P_Main.TabIndex = 5
         '
         'F_Settings
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 15.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(452, 339)
+        Me.ClientSize = New System.Drawing.Size(450, 380)
         Me.Controls.Add(Me.P_Main)
         Me.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.MinimumSize = New System.Drawing.Size(450, 380)
         Me.Name = "F_Settings"
         Me.ShowInTaskbar = False
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -385,4 +405,5 @@ Partial Class F_Settings
     Friend WithEvents Label3 As Label
     Friend WithEvents P_Header As Panel
     Friend WithEvents P_Separator As Panel
+    Friend WithEvents B_Log As Button
 End Class

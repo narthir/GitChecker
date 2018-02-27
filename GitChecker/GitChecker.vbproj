@@ -68,6 +68,11 @@
     <ApplicationIcon>Git-Icon-Black.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -99,6 +104,12 @@
     <Compile Include="ConsoleController.vb" />
     <Compile Include="EventQueueHandler.vb" />
     <Compile Include="Extensions.vb" />
+    <Compile Include="F_Log.Designer.vb">
+      <DependentUpon>F_Log.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Log.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F_Settings.Designer.vb">
       <DependentUpon>F_Settings.vb</DependentUpon>
     </Compile>
@@ -136,6 +147,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="F_Log.resx">
+      <DependentUpon>F_Log.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F_Settings.resx">
       <DependentUpon>F_Settings.vb</DependentUpon>
     </EmbeddedResource>

@@ -97,4 +97,8 @@
         drag = False
     End Sub
 
+    Private Sub B_Log_Click(sender As Object, e As EventArgs) Handles B_Log.Click
+        Dim f As New F_Log()
+        f.Show()
+    End Sub
 End Class

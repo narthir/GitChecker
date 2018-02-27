@@ -49,6 +49,7 @@ Partial Class UC_RepositoryItem
         'L_RepositoryName
         '
         Me.L_RepositoryName.AutoSize = True
+        Me.L_RepositoryName.BackColor = System.Drawing.Color.Transparent
         Me.L_RepositoryName.Font = New System.Drawing.Font("Segoe UI Semibold", 14.0!)
         Me.L_RepositoryName.LinkColor = System.Drawing.Color.Black
         Me.L_RepositoryName.Location = New System.Drawing.Point(6, 6)
@@ -62,6 +63,7 @@ Partial Class UC_RepositoryItem
         'TLP_Status
         '
         Me.TLP_Status.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.TLP_Status.BackColor = System.Drawing.Color.Transparent
         Me.TLP_Status.ColumnCount = 5
         Me.TLP_Status.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
         Me.TLP_Status.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.0!))
@@ -89,6 +91,7 @@ Partial Class UC_RepositoryItem
         '
         Me.L_HasUncommitedMark.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.L_HasUncommitedMark.AutoSize = True
+        Me.L_HasUncommitedMark.BackColor = System.Drawing.Color.Transparent
         Me.L_HasUncommitedMark.Location = New System.Drawing.Point(42, 11)
         Me.L_HasUncommitedMark.Name = "L_HasUncommitedMark"
         Me.L_HasUncommitedMark.Size = New System.Drawing.Size(12, 15)
@@ -97,6 +100,7 @@ Partial Class UC_RepositoryItem
         '
         'PB_HasUncommited
         '
+        Me.PB_HasUncommited.BackColor = System.Drawing.Color.Transparent
         Me.PB_HasUncommited.BackgroundImage = Global.GitChecker.My.Resources.Resources.list_rich_16
         Me.PB_HasUncommited.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.PB_HasUncommited.Dock = System.Windows.Forms.DockStyle.Fill
@@ -108,6 +112,7 @@ Partial Class UC_RepositoryItem
         '
         'PB_HasUntracked
         '
+        Me.PB_HasUntracked.BackColor = System.Drawing.Color.Transparent
         Me.PB_HasUntracked.BackgroundImage = Global.GitChecker.My.Resources.Resources.new_16
         Me.PB_HasUntracked.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.PB_HasUntracked.Dock = System.Windows.Forms.DockStyle.Fill
@@ -121,6 +126,7 @@ Partial Class UC_RepositoryItem
         '
         Me.L_HasUntrackedMark.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.L_HasUntrackedMark.AutoSize = True
+        Me.L_HasUntrackedMark.BackColor = System.Drawing.Color.Transparent
         Me.L_HasUntrackedMark.Location = New System.Drawing.Point(106, 11)
         Me.L_HasUntrackedMark.Name = "L_HasUntrackedMark"
         Me.L_HasUntrackedMark.Size = New System.Drawing.Size(12, 15)
@@ -129,6 +135,7 @@ Partial Class UC_RepositoryItem
         '
         'PB_PushCount
         '
+        Me.PB_PushCount.BackColor = System.Drawing.Color.Transparent
         Me.PB_PushCount.BackgroundImage = Global.GitChecker.My.Resources.Resources.upload_3_16
         Me.PB_PushCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.PB_PushCount.Dock = System.Windows.Forms.DockStyle.Fill
@@ -140,6 +147,7 @@ Partial Class UC_RepositoryItem
         '
         'PB_PullCount
         '
+        Me.PB_PullCount.BackColor = System.Drawing.Color.Transparent
         Me.PB_PullCount.BackgroundImage = Global.GitChecker.My.Resources.Resources.download_2_16
         Me.PB_PullCount.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.PB_PullCount.Dock = System.Windows.Forms.DockStyle.Fill
@@ -153,6 +161,7 @@ Partial Class UC_RepositoryItem
         '
         Me.L_PushCount.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.L_PushCount.AutoSize = True
+        Me.L_PushCount.BackColor = System.Drawing.Color.Transparent
         Me.L_PushCount.Location = New System.Drawing.Point(42, 48)
         Me.L_PushCount.Name = "L_PushCount"
         Me.L_PushCount.Size = New System.Drawing.Size(12, 15)
@@ -163,6 +172,7 @@ Partial Class UC_RepositoryItem
         '
         Me.L_PullCount.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.L_PullCount.AutoSize = True
+        Me.L_PullCount.BackColor = System.Drawing.Color.Transparent
         Me.L_PullCount.Location = New System.Drawing.Point(106, 48)
         Me.L_PullCount.Name = "L_PullCount"
         Me.L_PullCount.Size = New System.Drawing.Size(12, 15)
@@ -171,6 +181,7 @@ Partial Class UC_RepositoryItem
         '
         'TLP_Main
         '
+        Me.TLP_Main.BackColor = System.Drawing.Color.Transparent
         Me.TLP_Main.ColumnCount = 3
         Me.TLP_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TLP_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
@@ -191,6 +202,7 @@ Partial Class UC_RepositoryItem
         '
         'P_Line
         '
+        Me.P_Line.BackColor = System.Drawing.Color.Transparent
         Me.P_Line.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TLP_Main.SetColumnSpan(Me.P_Line, 3)
         Me.P_Line.Dock = System.Windows.Forms.DockStyle.Fill
@@ -202,6 +214,7 @@ Partial Class UC_RepositoryItem
         '
         'TLP_Functions
         '
+        Me.TLP_Functions.BackColor = System.Drawing.Color.Transparent
         Me.TLP_Functions.ColumnCount = 1
         Me.TLP_Functions.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TLP_Functions.Controls.Add(Me.B_OpenDirectory, 0, 1)
@@ -218,7 +231,7 @@ Partial Class UC_RepositoryItem
         'B_OpenDirectory
         '
         Me.B_OpenDirectory.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.B_OpenDirectory.BackColor = System.Drawing.Color.White
+        Me.B_OpenDirectory.BackColor = System.Drawing.Color.Transparent
         Me.B_OpenDirectory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.B_OpenDirectory.FlatAppearance.BorderSize = 0
         Me.B_OpenDirectory.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -232,7 +245,7 @@ Partial Class UC_RepositoryItem
         'B_SyncWithRemote
         '
         Me.B_SyncWithRemote.Anchor = System.Windows.Forms.AnchorStyles.Top
-        Me.B_SyncWithRemote.BackColor = System.Drawing.Color.White
+        Me.B_SyncWithRemote.BackColor = System.Drawing.Color.Transparent
         Me.B_SyncWithRemote.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.B_SyncWithRemote.FlatAppearance.BorderSize = 0
         Me.B_SyncWithRemote.FlatStyle = System.Windows.Forms.FlatStyle.Flat
@@ -247,7 +260,7 @@ Partial Class UC_RepositoryItem
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-        Me.BackColor = System.Drawing.Color.White
+        Me.BackColor = System.Drawing.Color.Transparent
         Me.Controls.Add(Me.TLP_Main)
         Me.Font = New System.Drawing.Font("Segoe UI Semibold", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Margin = New System.Windows.Forms.Padding(0)

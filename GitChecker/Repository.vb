@@ -104,7 +104,7 @@ Public Class Repository
         Catch ex As Exception
             UncommitedStates.Clear()
             UncommitedStates.Add(CommitState.Unknown)
-            LogError(ex)
+            Log(ex)
         End Try
     End Function
 
@@ -123,7 +123,7 @@ Public Class Repository
             RaiseEvent UpdateFinished(Me)
             Await UpdateLocalBranches()
         Catch ex As Exception
-            LogError(ex)
+            Log(ex)
             Throw
         End Try
     End Function
@@ -168,12 +168,12 @@ Public Class Repository
                                             locBranch = New LocalBranch(name, isCurrent, ahead, behind)
                                             branches.Add(locBranch)
                                         Catch ex As Exception
-                                            LogError(ex)
+                                            Log(ex)
                                         End Try
                                     End Sub)
             Me._LocalBranches = branches
         Catch ex As Exception
-            LogError(ex)
+            Log(ex)
         End Try
         RaiseEvent UpdateFinished(Me)
     End Function
@@ -192,7 +192,7 @@ Public Class Repository
             RaiseEvent UpdateFinished(Me)
             Await UpdateLocalBranches()
         Catch ex As Exception
-            LogError(ex)
+            Log(ex)
             Throw
         End Try
     End Function

@@ -27,6 +27,7 @@ Partial Class F_RepositoryList
         Me.TLP_Main = New System.Windows.Forms.TableLayoutPanel()
         Me.FLP_RepositoryList = New System.Windows.Forms.FlowLayoutPanel()
         Me.TLP_Options = New System.Windows.Forms.TableLayoutPanel()
+        Me.B_PullAll = New System.Windows.Forms.Button()
         Me.B_Refresh = New System.Windows.Forms.Button()
         Me.B_Settings = New System.Windows.Forms.Button()
         Me.B_Pin = New System.Windows.Forms.Button()
@@ -36,7 +37,6 @@ Partial Class F_RepositoryList
         Me.PB_Filter = New System.Windows.Forms.PictureBox()
         Me.P_Header = New System.Windows.Forms.Panel()
         Me.B_Close = New System.Windows.Forms.Button()
-        Me.B_PullAll = New System.Windows.Forms.Button()
         Me.MainPanel.SuspendLayout()
         Me.TLP_Main.SuspendLayout()
         Me.TLP_Options.SuspendLayout()
@@ -107,6 +107,20 @@ Partial Class F_RepositoryList
         Me.TLP_Options.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TLP_Options.Size = New System.Drawing.Size(452, 32)
         Me.TLP_Options.TabIndex = 3
+        '
+        'B_PullAll
+        '
+        Me.B_PullAll.Anchor = System.Windows.Forms.AnchorStyles.Right
+        Me.B_PullAll.BackgroundImage = Global.GitChecker.My.Resources.Resources.download_2_16
+        Me.B_PullAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.B_PullAll.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro
+        Me.B_PullAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.B_PullAll.Location = New System.Drawing.Point(370, 3)
+        Me.B_PullAll.Margin = New System.Windows.Forms.Padding(10, 3, 10, 3)
+        Me.B_PullAll.Name = "B_PullAll"
+        Me.B_PullAll.Size = New System.Drawing.Size(26, 26)
+        Me.B_PullAll.TabIndex = 3
+        Me.B_PullAll.UseVisualStyleBackColor = True
         '
         'B_Refresh
         '
@@ -223,20 +237,6 @@ Partial Class F_RepositoryList
         Me.B_Close.Size = New System.Drawing.Size(34, 28)
         Me.B_Close.TabIndex = 4
         Me.B_Close.UseVisualStyleBackColor = True
-        '
-        'B_PullAll
-        '
-        Me.B_PullAll.Anchor = System.Windows.Forms.AnchorStyles.Right
-        Me.B_PullAll.BackgroundImage = Global.GitChecker.My.Resources.Resources.download_2_16
-        Me.B_PullAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.B_PullAll.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro
-        Me.B_PullAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_PullAll.Location = New System.Drawing.Point(370, 3)
-        Me.B_PullAll.Margin = New System.Windows.Forms.Padding(10, 3, 10, 3)
-        Me.B_PullAll.Name = "B_PullAll"
-        Me.B_PullAll.Size = New System.Drawing.Size(26, 26)
-        Me.B_PullAll.TabIndex = 3
-        Me.B_PullAll.UseVisualStyleBackColor = True
         '
         'F_RepositoryList
         '

@@ -20,7 +20,7 @@
                                                      If Me.IsAlive Then
                                                          Me.InvokeGUI(Sub()
                                                                           RefreshControlData()
-                                                                          B_SyncWithRemote.BackColor = Color.White
+                                                                          B_SyncWithRemote.BackColor = Me.BackColor
                                                                       End Sub)
                                                      End If
                                                  End Sub
@@ -56,7 +56,7 @@
             Dim proc As New Process With {.StartInfo = procInfo}
             proc.Start()
         Catch ex As Exception
-            LogError(ex)
+            Log(ex)
         End Try
     End Sub
 
@@ -68,7 +68,7 @@
         If Me.IsAlive AndAlso Me.Visible Then
             Me.InvokeGUI(Sub()
                              RefreshControlData()
-                             B_SyncWithRemote.BackColor = Color.White
+                             B_SyncWithRemote.BackColor = Me.BackColor
                          End Sub)
         End If
     End Sub

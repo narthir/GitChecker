@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿Imports System.Collections.ObjectModel
+Imports System.IO
 Imports System.Reflection
 
 Module Main
@@ -6,8 +7,15 @@ Module Main
         Application.Run(New MainController)
     End Sub
 
-    Public Sub LogError(ex As Exception)
+    Public ReadOnly Property LogEntries As New List(Of String)
+
+    Public Sub Log(ex As Exception)
+        Log(ex.ToString)
         MsgBox(ex.ToString)
+    End Sub
+
+    Public Sub Log(text As String)
+        _LogEntries.Add(String.Concat(Now.ToShortDateString, " ", Now.ToShortTimeString, " - ", text))
     End Sub
 End Module
 
@@ -23,6 +31,8 @@ Public Class MainController
 
     Private hasChangedReposIco = New Icon(Assembly.GetEntryAssembly().GetManifestResourceStream("GitChecker.Git-Icon-Orange.ico"))
     Private noChangedReposIco = New Icon(Assembly.GetEntryAssembly().GetManifestResourceStream("GitChecker.Git-Icon-White.ico"))
+
+
 
     Private Shared _instance As MainController
     Public Shared ReadOnly Property I As MainController
@@ -52,6 +62,19 @@ Public Class MainController
         setRepositories().Wait()
 
         repoList.ShowInTaskbar = My.Settings.ShowInTaskbar
+
+
+        Dim s As Screen = Screen.FromPoint(New Point(Cursor.Position.X, Cursor.Position.Y))
+        With repoList
+            If My.Settings.ListLocation = Point.Empty Then
+                My.Settings.ListLocation = New Point(s.Bounds.Width - .Width - 10, s.WorkingArea.Height - .Height - 10)
+            End If
+            .Height = s.WorkingArea.Height - 20
+            .Location = My.Settings.ListLocation
+        End With
+
+
+
         If My.Settings.ShowOnStartup Then repoList.Show()
 
         AddHandler ni.MouseClick, Sub(sender As Object, e As MouseEventArgs)
