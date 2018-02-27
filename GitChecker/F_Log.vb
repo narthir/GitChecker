@@ -10,9 +10,9 @@
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-
-        B_Refresh.PerformClick()
     End Sub
+
+
     Private Sub B_OK_Click(sender As Object, e As EventArgs) Handles B_OK.Click
         Me.Close()
     End Sub
@@ -39,8 +39,14 @@
     End Sub
 
     Private Sub B_Refresh_Click(sender As Object, e As EventArgs) Handles B_Refresh.Click
-        ME_Logs.Lines = Main.LogEntries.ToArray
-        ME_Logs.SelectionStart = ME_Logs.Text.Length
-        ME_Logs.ScrollToCaret()
+        TE_Logs.Lines = Main.LogEntries.ToArray
+        TE_Logs.SelectionStart = TE_Logs.Text.Length - 1
+        TE_Logs.ScrollToCaret()
+    End Sub
+
+    Private Sub F_Log_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        TE_Logs.Lines = Main.LogEntries.ToArray
+        TE_Logs.SelectionStart = TE_Logs.Text.Length - 1
+        TE_Logs.ScrollToCaret()
     End Sub
 End Class

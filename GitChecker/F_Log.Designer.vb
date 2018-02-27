@@ -24,16 +24,15 @@ Partial Class F_Log
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(F_Log))
         Me.TLP_Main = New System.Windows.Forms.TableLayoutPanel()
+        Me.B_Refresh = New System.Windows.Forms.Button()
         Me.B_OK = New System.Windows.Forms.Button()
         Me.P_Header = New System.Windows.Forms.Panel()
         Me.B_Close = New System.Windows.Forms.Button()
         Me.P_Separator = New System.Windows.Forms.Panel()
-        Me.ME_Logs = New DevExpress.XtraEditors.MemoEdit()
         Me.P_Main = New System.Windows.Forms.Panel()
-        Me.B_Refresh = New System.Windows.Forms.Button()
+        Me.TE_Logs = New System.Windows.Forms.TextBox()
         Me.TLP_Main.SuspendLayout()
         Me.P_Header.SuspendLayout()
-        CType(Me.ME_Logs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.P_Main.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -47,7 +46,7 @@ Partial Class F_Log
         Me.TLP_Main.Controls.Add(Me.B_OK, 1, 3)
         Me.TLP_Main.Controls.Add(Me.P_Header, 0, 0)
         Me.TLP_Main.Controls.Add(Me.P_Separator, 0, 1)
-        Me.TLP_Main.Controls.Add(Me.ME_Logs, 0, 2)
+        Me.TLP_Main.Controls.Add(Me.TE_Logs, 0, 2)
         Me.TLP_Main.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TLP_Main.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
         Me.TLP_Main.Location = New System.Drawing.Point(0, 0)
@@ -59,6 +58,21 @@ Partial Class F_Log
         Me.TLP_Main.RowStyles.Add(New System.Windows.Forms.RowStyle())
         Me.TLP_Main.Size = New System.Drawing.Size(947, 586)
         Me.TLP_Main.TabIndex = 0
+        '
+        'B_Refresh
+        '
+        Me.B_Refresh.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.B_Refresh.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.B_Refresh.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray
+        Me.B_Refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.B_Refresh.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.B_Refresh.Location = New System.Drawing.Point(8, 543)
+        Me.B_Refresh.Margin = New System.Windows.Forms.Padding(8)
+        Me.B_Refresh.Name = "B_Refresh"
+        Me.B_Refresh.Size = New System.Drawing.Size(91, 35)
+        Me.B_Refresh.TabIndex = 8
+        Me.B_Refresh.Text = "Refresh"
+        Me.B_Refresh.UseVisualStyleBackColor = False
         '
         'B_OK
         '
@@ -111,15 +125,6 @@ Partial Class F_Log
         Me.P_Separator.Size = New System.Drawing.Size(947, 1)
         Me.P_Separator.TabIndex = 7
         '
-        'ME_Logs
-        '
-        Me.TLP_Main.SetColumnSpan(Me.ME_Logs, 2)
-        Me.ME_Logs.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ME_Logs.Location = New System.Drawing.Point(3, 41)
-        Me.ME_Logs.Name = "ME_Logs"
-        Me.ME_Logs.Size = New System.Drawing.Size(941, 491)
-        Me.ME_Logs.TabIndex = 0
-        '
         'P_Main
         '
         Me.P_Main.BackColor = System.Drawing.Color.WhiteSmoke
@@ -131,20 +136,16 @@ Partial Class F_Log
         Me.P_Main.Size = New System.Drawing.Size(949, 588)
         Me.P_Main.TabIndex = 6
         '
-        'B_Refresh
+        'TE_Logs
         '
-        Me.B_Refresh.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.B_Refresh.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.B_Refresh.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray
-        Me.B_Refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_Refresh.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.B_Refresh.Location = New System.Drawing.Point(8, 543)
-        Me.B_Refresh.Margin = New System.Windows.Forms.Padding(8)
-        Me.B_Refresh.Name = "B_Refresh"
-        Me.B_Refresh.Size = New System.Drawing.Size(91, 35)
-        Me.B_Refresh.TabIndex = 8
-        Me.B_Refresh.Text = "Refresh"
-        Me.B_Refresh.UseVisualStyleBackColor = False
+        Me.TLP_Main.SetColumnSpan(Me.TE_Logs, 2)
+        Me.TE_Logs.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TE_Logs.Location = New System.Drawing.Point(3, 41)
+        Me.TE_Logs.Multiline = True
+        Me.TE_Logs.Name = "TE_Logs"
+        Me.TE_Logs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TE_Logs.Size = New System.Drawing.Size(941, 491)
+        Me.TE_Logs.TabIndex = 9
         '
         'F_Log
         '
@@ -157,8 +158,8 @@ Partial Class F_Log
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "F_Log"
         Me.TLP_Main.ResumeLayout(False)
+        Me.TLP_Main.PerformLayout()
         Me.P_Header.ResumeLayout(False)
-        CType(Me.ME_Logs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.P_Main.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -169,7 +170,7 @@ Partial Class F_Log
     Friend WithEvents P_Header As Panel
     Friend WithEvents B_Close As Button
     Friend WithEvents P_Separator As Panel
-    Friend WithEvents ME_Logs As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents P_Main As Panel
     Friend WithEvents B_Refresh As Button
+    Friend WithEvents TE_Logs As TextBox
 End Class
