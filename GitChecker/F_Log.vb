@@ -11,7 +11,7 @@
 
         ' Add any initialization after the InitializeComponent() call.
 
-        ME_Logs.Lines = Main.LogEntries.ToArray
+        B_Refresh.PerformClick()
     End Sub
     Private Sub B_OK_Click(sender As Object, e As EventArgs) Handles B_OK.Click
         Me.Close()
