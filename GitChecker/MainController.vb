@@ -176,18 +176,25 @@ Public Class MainController
     End Function
 
     Public Sub SyncAllRemoteRepositories()
-        Debug.WriteLine("----  Starting  SyncAllRemoteRepositories   -----")
-        Dim reposToSync = repositories.ToList
-        While reposToSync.Any
-            Dim batch = reposToSync.TakeAndRemove(3)
-            Dim tasks As New List(Of Task)
-            tasks.Add(Task.Delay(3000))
-            batch.ForEach(Async Sub(repo)
-                              Await repo.UpdateRemoteData()
-                          End Sub)
-            Task.WaitAll(tasks.ToArray)
-        End While
-        Debug.WriteLine("----  Finished  SyncAllRemoteRepositories   -----")
+        Try
+            repoList.ToggleRefreshButton(False)
+            Debug.WriteLine("----  Starting  SyncAllRemoteRepositories   -----")
+            Dim reposToSync = repositories.ToList
+            While reposToSync.Any
+                Dim batch = reposToSync.TakeAndRemove(3)
+                Dim tasks As New List(Of Task)
+                tasks.Add(Task.Delay(3000))
+                batch.ForEach(Async Sub(repo)
+                                  Await repo.UpdateRemoteData()
+                              End Sub)
+                Task.WaitAll(tasks.ToArray)
+            End While
+            Debug.WriteLine("----  Finished  SyncAllRemoteRepositories   -----")
+        Catch ex As Exception
+            Log(ex)
+        Finally
+            repoList.ToggleRefreshButton(True)
+        End Try
     End Sub
 
     Private Function getRepositories(parent As DirectoryInfo) As List(Of Repository)

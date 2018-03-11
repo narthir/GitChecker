@@ -94,15 +94,25 @@
 
     Private Async Sub B_Refresh_Click(sender As Object, e As EventArgs) Handles B_Refresh.Click
         Try
-            B_Refresh.BackColor = Color.Orange
-            B_Refresh.Enabled = False
+            ToggleRefreshButton(False)
             Await MainController.I.ReloadRepos
         Catch ex As Exception
             Log(ex)
         Finally
-            B_Refresh.Enabled = True
-            B_Refresh.BackColor = Color.Transparent
+            ToggleRefreshButton(True)
         End Try
+    End Sub
+
+    Public Sub ToggleRefreshButton(Enabled As Boolean)
+        Me.InvokeGUI(Sub()
+                         If Enabled Then
+                             B_Refresh.Enabled = True
+                             B_Refresh.BackColor = Color.Transparent
+                         Else
+                             B_Refresh.BackColor = Color.Orange
+                             B_Refresh.Enabled = False
+                         End If
+                     End Sub)
     End Sub
 
     Private Sub TE_Filter_TextChanged(sender As Object, e As EventArgs) Handles TE_Filter.TextChanged
@@ -157,6 +167,8 @@
     End Sub
 
     Private Async Sub B_PullAll_Click(sender As Object, e As EventArgs) Handles B_PullAll.Click
+        Dim tmpTopMost = Me.TopMost
+        Me.TopMost = True
         If MsgBox("Pull all branches for all repositories?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
             For Each repo In repoItems.Select(Function(x) x.Repository)
                 If repo.UncommitedStates.Any = False AndAlso repo.LocalBranches.Select(Function(x) x.Behind).Sum > 0 Then
@@ -164,6 +176,7 @@
                 End If
             Next
         End If
+        Me.TopMost = tmpTopMost
     End Sub
 
     Private Sub FLP_RepositoryList_VisibleChanged(sender As Object, e As EventArgs) Handles FLP_RepositoryList.VisibleChanged
