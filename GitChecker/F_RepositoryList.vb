@@ -168,7 +168,10 @@
 
     Private Async Sub B_PullAll_Click(sender As Object, e As EventArgs) Handles B_PullAll.Click
         Dim tmpTopMost = Me.TopMost
+        Dim tmpIsPinned = Me.isPinned
         Me.TopMost = True
+        Me.isPinned = True
+
         If MsgBox("Pull all branches for all repositories?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
             For Each repo In repoItems.Select(Function(x) x.Repository)
                 If repo.UncommitedStates.Any = False AndAlso repo.LocalBranches.Select(Function(x) x.Behind).Sum > 0 Then
@@ -176,7 +179,9 @@
                 End If
             Next
         End If
+
         Me.TopMost = tmpTopMost
+        Me.isPinned = tmpIsPinned
     End Sub
 
     Private Sub FLP_RepositoryList_VisibleChanged(sender As Object, e As EventArgs) Handles FLP_RepositoryList.VisibleChanged
