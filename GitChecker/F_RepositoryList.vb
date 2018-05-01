@@ -137,10 +137,10 @@
             If Not repoItm.Repository.Name.ToLower Like String.Format("*{0}*", TE_Filter.Text) Then
                 visible = False
             End If
-        End If
-
-        If Me.filterOnlyChanged AndAlso repoItm.Repository.AnyChanges = False Then
-            visible = False
+        Else
+            If Me.filterOnlyChanged AndAlso repoItm.Repository.AnyChanges = False Then
+                visible = False
+            End If
         End If
         Return visible
     End Function
