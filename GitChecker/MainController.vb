@@ -89,14 +89,12 @@ Public Class MainController
                                   End Sub
 
 
-        AddHandler remoteRefreshTimer.Tick, Sub()
-                                                Task.Run(Sub()
-                                                             SyncAllRemoteRepositories()
-                                                         End Sub)
+        AddHandler remoteRefreshTimer.Tick, Async Sub()
+                                                Await SyncAllRemoteRepositories()
                                             End Sub
         Task.Run(Sub()
                      Threading.Thread.Sleep(10000)
-                     SyncAllRemoteRepositories()
+                     SyncAllRemoteRepositories().Wait()
                  End Sub)
 
         SetRemoteRefreshInterval(My.Settings.RemoteRefreshInterval)
@@ -170,12 +168,11 @@ Public Class MainController
 
     Friend Async Function ReloadRepos() As Task
         Await setRepositories()
-        Await Task.Run(Sub()
-                           SyncAllRemoteRepositories()
-                       End Sub)
+        Await SyncAllRemoteRepositories()
+
     End Function
 
-    Public Sub SyncAllRemoteRepositories()
+    Public Async Function SyncAllRemoteRepositories() As Task
         Try
             repoList.ToggleRefreshButton(False)
             Debug.WriteLine("----  Starting  SyncAllRemoteRepositories   -----")
@@ -184,10 +181,10 @@ Public Class MainController
                 Dim batch = reposToSync.TakeAndRemove(3)
                 Dim tasks As New List(Of Task)
                 tasks.Add(Task.Delay(3000))
-                batch.ForEach(Async Sub(repo)
-                                  Await repo.UpdateRemoteData()
-                              End Sub)
-                Task.WaitAll(tasks.ToArray)
+                For Each r As Repository In batch
+                    tasks.Add(r.UpdateRemoteData)
+                Next
+                Await Task.WhenAll(tasks.ToArray)
             End While
             Debug.WriteLine("----  Finished  SyncAllRemoteRepositories   -----")
         Catch ex As Exception
@@ -195,7 +192,7 @@ Public Class MainController
         Finally
             repoList.ToggleRefreshButton(True)
         End Try
-    End Sub
+    End Function
 
     Private Function getRepositories(parent As DirectoryInfo) As List(Of Repository)
         Dim l As New List(Of Repository)
