@@ -61,45 +61,49 @@ Public Class Repository
     Public Event UpdateStarted(sender As Repository)
 
     Async Function UpdateLocalData() As Task
-        Try
-            RaiseEvent UpdateStarted(Me)
-            watcher.EnableRaisingEvents = False
-            Await UpdateLocalBranches()
-            Await UpdateUncommitedState()
-        Finally
-            watcher.EnableRaisingEvents = True
-            RaiseEvent UpdateFinished(Me)
-        End Try
+        If IO.File.Exists(My.Settings.GitLocation) Then
+            Try
+                RaiseEvent UpdateStarted(Me)
+                watcher.EnableRaisingEvents = False
+                Await UpdateLocalBranches()
+                Await UpdateUncommitedState()
+            Finally
+                watcher.EnableRaisingEvents = True
+                RaiseEvent UpdateFinished(Me)
+            End Try
+        End If
     End Function
     Private Async Function UpdateUncommitedState() As Task
         Try
-            Dim proc = getGitProc()
-            proc.StartInfo.Arguments &= "diff --shortstat"
-            Dim shortStatsResults As New List(Of String)
-            Using cc As New ConsoleController(proc, Sub(x)
-                                                        shortStatsResults.Add(x)
-                                                    End Sub)
-                Await cc.Run
-            End Using
-            shortStatsResults.DebugWriteLineAll(Me.Name & " : Uncommited: {0}")
+            If IO.File.Exists(My.Settings.GitLocation) Then
+                Dim proc = getGitProc()
+                proc.StartInfo.Arguments &= "diff --shortstat"
+                Dim shortStatsResults As New List(Of String)
+                Using cc As New ConsoleController(proc, Sub(x)
+                                                            shortStatsResults.Add(x)
+                                                        End Sub)
+                    Await cc.Run
+                End Using
+                shortStatsResults.DebugWriteLineAll(Me.Name & " : Uncommited: {0}")
 
-            proc = getGitProc()
-            proc.StartInfo.Arguments &= "ls-files --others --exclude-standard"
-            Dim otherResults As New List(Of String)
-            Using cc = New ConsoleController(proc, Sub(x)
-                                                       otherResults.Add(x)
-                                                   End Sub)
-                Await cc.Run
-            End Using
-            otherResults.DebugWriteLineAll(Me.Name & " : Untracked: {0}")
+                proc = getGitProc()
+                proc.StartInfo.Arguments &= "ls-files --others --exclude-standard"
+                Dim otherResults As New List(Of String)
+                Using cc = New ConsoleController(proc, Sub(x)
+                                                           otherResults.Add(x)
+                                                       End Sub)
+                    Await cc.Run
+                End Using
+                otherResults.DebugWriteLineAll(Me.Name & " : Untracked: {0}")
 
-            UncommitedStates.Clear()
+                UncommitedStates.Clear()
 
-            If shortStatsResults.Any Then
-                UncommitedStates.Add(CommitState.HasChanges)
-            End If
-            If otherResults.Any Then
-                UncommitedStates.Add(CommitState.HasUntracked)
+                If shortStatsResults.Any Then
+                    UncommitedStates.Add(CommitState.HasChanges)
+                End If
+                If otherResults.Any Then
+                    UncommitedStates.Add(CommitState.HasUntracked)
+                End If
             End If
         Catch ex As Exception
             UncommitedStates.Clear()
@@ -110,18 +114,20 @@ Public Class Repository
 
     Public Async Function PullAll() As Task
         Try
-            RaiseEvent UpdateStarted(Me)
-            Dim results As New List(Of String)
-            Dim proc = getGitProc()
-            proc.StartInfo.Arguments &= "pull --all"
-            Using cc As New ConsoleController(proc, Sub(x)
-                                                        results.Add(x)
-                                                    End Sub)
-                Await cc.Run
-            End Using
-            results.DebugWriteLineAll(Me.Name & " : PulledAll : {0}")
-            RaiseEvent UpdateFinished(Me)
-            Await UpdateLocalBranches()
+            If IO.File.Exists(My.Settings.GitLocation) Then
+                RaiseEvent UpdateStarted(Me)
+                Dim results As New List(Of String)
+                Dim proc = getGitProc()
+                proc.StartInfo.Arguments &= "pull --all"
+                Using cc As New ConsoleController(proc, Sub(x)
+                                                            results.Add(x)
+                                                        End Sub)
+                    Await cc.Run
+                End Using
+                results.DebugWriteLineAll(Me.Name & " : PulledAll : {0}")
+                RaiseEvent UpdateFinished(Me)
+                Await UpdateLocalBranches()
+            End If
         Catch ex As Exception
             Log(ex)
             Throw
@@ -129,68 +135,72 @@ Public Class Repository
     End Function
 
     Private Async Function UpdateLocalBranches() As Task
-        RaiseEvent UpdateStarted(Me)
         Try
-            Dim proc = getGitProc()
-            proc.StartInfo.Arguments &= "for-each-ref --format=""%(HEAD)|%(refname:short)|%(upstream:track)"" refs/heads"
-            Dim branchesResults As New List(Of String)
-            Using cc = New ConsoleController(proc, Sub(x)
-                                                       branchesResults.Add(x)
-                                                   End Sub)
-                Await cc.Run
-            End Using
-            branchesResults.DebugWriteLineAll(Me.Name & " : Branches : {0}")
+            RaiseEvent UpdateStarted(Me)
+            If IO.File.Exists(My.Settings.GitLocation) Then
+                Dim proc = getGitProc()
+                proc.StartInfo.Arguments &= "for-each-ref --format=""%(HEAD)|%(refname:short)|%(upstream:track)"" refs/heads"
+                Dim branchesResults As New List(Of String)
+                Using cc = New ConsoleController(proc, Sub(x)
+                                                           branchesResults.Add(x)
+                                                       End Sub)
+                    Await cc.Run
+                End Using
+                branchesResults.DebugWriteLineAll(Me.Name & " : Branches : {0}")
 
-            Dim branches As New List(Of LocalBranch)
-            branchesResults.ForEach(Sub(x)
-                                        'output example  *|master|[ahead 2, behind 1]
-                                        Try
-                                            Dim parts = x.Split("|", options:=StringSplitOptions.None)
-                                            Dim locBranch As LocalBranch = Nothing
-                                            Dim isCurrent = (parts(0) = "*")
-                                            Dim name = parts(1)
-                                            Dim ahead As Integer = 0
-                                            Dim behind As Integer = 0
-                                            If parts(2).Contains("ahead") AndAlso parts(2).Contains("behind") Then
-                                                parts(2) = parts(2).Replace("[", "").Replace("]", "")
-                                                parts(2) = parts(2).Replace("ahead", "").Replace("behind", "")
-                                                Dim subParts = parts(2).Split(",")
-                                                ahead = CInt(Trim(subParts(0)))
-                                                behind = CInt(Trim(subParts(1)))
-                                            Else
-                                                If parts(2).Contains("ahead") Then
-                                                    ahead = CInt(Trim(parts(2).Replace("[ahead ", "").Replace("]", "")))
+                Dim branches As New List(Of LocalBranch)
+                branchesResults.ForEach(Sub(x)
+                                            'output example  *|master|[ahead 2, behind 1]
+                                            Try
+                                                Dim parts = x.Split("|", options:=StringSplitOptions.None)
+                                                Dim locBranch As LocalBranch = Nothing
+                                                Dim isCurrent = (parts(0) = "*")
+                                                Dim name = parts(1)
+                                                Dim ahead As Integer = 0
+                                                Dim behind As Integer = 0
+                                                If parts(2).Contains("ahead") AndAlso parts(2).Contains("behind") Then
+                                                    parts(2) = parts(2).Replace("[", "").Replace("]", "")
+                                                    parts(2) = parts(2).Replace("ahead", "").Replace("behind", "")
+                                                    Dim subParts = parts(2).Split(",")
+                                                    ahead = CInt(Trim(subParts(0)))
+                                                    behind = CInt(Trim(subParts(1)))
+                                                Else
+                                                    If parts(2).Contains("ahead") Then
+                                                        ahead = CInt(Trim(parts(2).Replace("[ahead ", "").Replace("]", "")))
+                                                    End If
+                                                    If parts(2).Contains("behind") Then
+                                                        behind = CInt(Trim(parts(2).Replace("[behind ", "").Replace("]", "")))
+                                                    End If
                                                 End If
-                                                If parts(2).Contains("behind") Then
-                                                    behind = CInt(Trim(parts(2).Replace("[behind ", "").Replace("]", "")))
-                                                End If
-                                            End If
-                                            locBranch = New LocalBranch(name, isCurrent, ahead, behind)
-                                            branches.Add(locBranch)
-                                        Catch ex As Exception
-                                            Log(ex)
-                                        End Try
-                                    End Sub)
-            Me._LocalBranches = branches
+                                                locBranch = New LocalBranch(name, isCurrent, ahead, behind)
+                                                branches.Add(locBranch)
+                                            Catch ex As Exception
+                                                Log(ex)
+                                            End Try
+                                        End Sub)
+                Me._LocalBranches = branches
+            End If
+            RaiseEvent UpdateFinished(Me)
         Catch ex As Exception
             Log(ex)
         End Try
-        RaiseEvent UpdateFinished(Me)
     End Function
     Async Function UpdateRemoteData() As Task
         Try
-            RaiseEvent UpdateStarted(Me)
-            Dim results As New List(Of String)
-            Dim proc = getGitProc()
-            proc.StartInfo.Arguments &= "remote -v update"
-            Using cc As New ConsoleController(proc, Sub(x)
-                                                        results.Add(x)
-                                                    End Sub)
-                Await cc.Run
-            End Using
-            results.DebugWriteLineAll(Me.Name & " : UpdateRemoteData : {0}")
-            RaiseEvent UpdateFinished(Me)
-            Await UpdateLocalBranches()
+            If IO.File.Exists(My.Settings.GitLocation) Then
+                RaiseEvent UpdateStarted(Me)
+                Dim results As New List(Of String)
+                Dim proc = getGitProc()
+                proc.StartInfo.Arguments &= "remote -v update"
+                Using cc As New ConsoleController(proc, Sub(x)
+                                                            results.Add(x)
+                                                        End Sub)
+                    Await cc.Run
+                End Using
+                results.DebugWriteLineAll(Me.Name & " : UpdateRemoteData : {0}")
+                RaiseEvent UpdateFinished(Me)
+                Await UpdateLocalBranches()
+            End If
         Catch ex As Exception
             Log(ex)
             Throw

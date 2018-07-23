@@ -44,6 +44,13 @@
         Dim pushCount = Repository.LocalBranches.Select(Function(x) x.Ahead).Sum
         PB_PushCount.Visible = (pushCount > 0)
         L_PushCount.Text = If(pushCount > 0, pushCount, "")
+
+        L_BranchName.Text = ""
+        Try
+            Dim currBranch = Repository.LocalBranches.Where(Function(x) x.IsCurrent).Single
+            If currBranch.Name.ToLower <> "master" Then L_BranchName.Text = String.Format("Branch: {0}", currBranch.Name)
+        Catch ex As Exception
+        End Try
     End Sub
 
 
