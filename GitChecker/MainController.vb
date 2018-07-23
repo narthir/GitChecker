@@ -180,7 +180,10 @@ Public Class MainController
             While reposToSync.Any
                 Dim batch = reposToSync.TakeAndRemove(3)
                 Dim tasks As New List(Of Task)
+<<<<<<< HEAD
                 tasks.Add(Task.Delay(3000))
+=======
+>>>>>>> master
                 For Each r As Repository In batch
                     tasks.Add(r.UpdateRemoteData)
                 Next
