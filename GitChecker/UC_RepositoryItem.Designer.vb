@@ -37,6 +37,8 @@ Partial Class UC_RepositoryItem
         Me.TLP_Functions = New System.Windows.Forms.TableLayoutPanel()
         Me.B_OpenDirectory = New System.Windows.Forms.Button()
         Me.B_SyncWithRemote = New System.Windows.Forms.Button()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.L_BranchName = New System.Windows.Forms.Label()
         Me.TLP_Status.SuspendLayout()
         CType(Me.PB_HasUncommited, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PB_HasUntracked, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -44,6 +46,7 @@ Partial Class UC_RepositoryItem
         CType(Me.PB_PullCount, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TLP_Main.SuspendLayout()
         Me.TLP_Functions.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
         Me.SuspendLayout()
         '
         'L_RepositoryName
@@ -58,7 +61,7 @@ Partial Class UC_RepositoryItem
         Me.L_RepositoryName.Size = New System.Drawing.Size(172, 25)
         Me.L_RepositoryName.TabIndex = 3
         Me.L_RepositoryName.TabStop = True
-        Me.L_RepositoryName.Text = "-RepositoryName-"
+        Me.L_RepositoryName.Text = "-RepositoryName-" & Global.Microsoft.VisualBasic.ChrW(13)
         '
         'TLP_Status
         '
@@ -186,10 +189,10 @@ Partial Class UC_RepositoryItem
         Me.TLP_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TLP_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TLP_Main.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 31.0!))
-        Me.TLP_Main.Controls.Add(Me.L_RepositoryName, 0, 0)
         Me.TLP_Main.Controls.Add(Me.TLP_Status, 1, 0)
         Me.TLP_Main.Controls.Add(Me.P_Line, 0, 1)
         Me.TLP_Main.Controls.Add(Me.TLP_Functions, 2, 0)
+        Me.TLP_Main.Controls.Add(Me.TableLayoutPanel1, 0, 0)
         Me.TLP_Main.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TLP_Main.Location = New System.Drawing.Point(0, 5)
         Me.TLP_Main.Margin = New System.Windows.Forms.Padding(0)
@@ -197,6 +200,7 @@ Partial Class UC_RepositoryItem
         Me.TLP_Main.RowCount = 2
         Me.TLP_Main.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TLP_Main.RowStyles.Add(New System.Windows.Forms.RowStyle())
+        Me.TLP_Main.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
         Me.TLP_Main.Size = New System.Drawing.Size(732, 91)
         Me.TLP_Main.TabIndex = 9
         '
@@ -256,6 +260,34 @@ Partial Class UC_RepositoryItem
         Me.B_SyncWithRemote.TabIndex = 4
         Me.B_SyncWithRemote.UseVisualStyleBackColor = False
         '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 1
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.L_RepositoryName, 0, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.L_BranchName, 0, 1)
+        Me.TableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.TableLayoutPanel1.Margin = New System.Windows.Forms.Padding(0)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 2
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(200, 84)
+        Me.TableLayoutPanel1.TabIndex = 13
+        '
+        'L_BranchName
+        '
+        Me.L_BranchName.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.L_BranchName.AutoSize = True
+        Me.L_BranchName.Font = New System.Drawing.Font("Segoe UI Semibold", 12.0!)
+        Me.L_BranchName.Location = New System.Drawing.Point(6, 52)
+        Me.L_BranchName.Margin = New System.Windows.Forms.Padding(6)
+        Me.L_BranchName.Name = "L_BranchName"
+        Me.L_BranchName.Size = New System.Drawing.Size(115, 21)
+        Me.L_BranchName.TabIndex = 4
+        Me.L_BranchName.Text = "-BranchName-"
+        '
         'UC_RepositoryItem
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -274,8 +306,9 @@ Partial Class UC_RepositoryItem
         CType(Me.PB_PushCount, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PB_PullCount, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TLP_Main.ResumeLayout(False)
-        Me.TLP_Main.PerformLayout()
         Me.TLP_Functions.ResumeLayout(False)
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.TableLayoutPanel1.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -294,4 +327,6 @@ Partial Class UC_RepositoryItem
     Friend WithEvents P_Line As Panel
     Friend WithEvents TLP_Functions As TableLayoutPanel
     Friend WithEvents B_OpenDirectory As Button
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents L_BranchName As Label
 End Class
