@@ -38,6 +38,11 @@ Public Class Repository
 
     Public ReadOnly Property UncommitedStates As New List(Of CommitState)
     Public ReadOnly Property LocalBranches As New List(Of LocalBranch)
+    Public ReadOnly Property CurrentBranch As LocalBranch
+        Get
+            Return LocalBranches.Where(Function(x) x.IsCurrent = True).SingleOrDefault
+        End Get
+    End Property
     Public ReadOnly Property Location As DirectoryInfo
 
     Public ReadOnly Property Name As String
@@ -185,6 +190,31 @@ Public Class Repository
             Log(ex)
         End Try
     End Function
+
+    Async Function SwitchBranch(name As String) As Task
+        Try
+            Dim destBranch = Me.LocalBranches.Where(Function(x) x.Name.ToLower = name.ToLower).SingleOrDefault
+            If name = "" OrElse destBranch Is Nothing OrElse Me.CurrentBranch Is Nothing OrElse Me.AnyChanges = True Then Return
+            If IO.File.Exists(My.Settings.GitLocation) AndAlso Me.CurrentBranch?.Name <> name Then
+                RaiseEvent UpdateStarted(Me)
+                Dim results As New List(Of String)
+                Dim proc = getGitProc()
+                proc.StartInfo.Arguments &= String.Format("checkout {0}", destBranch.Name)
+                Using cc As New ConsoleController(proc, Sub(x)
+                                                            results.Add(x)
+                                                        End Sub)
+                    Await cc.Run
+                End Using
+                results.DebugWriteLineAll(Me.Name & " : SwitchBranch : {0}")
+                RaiseEvent UpdateFinished(Me)
+                Await UpdateLocalBranches()
+            End If
+        Catch ex As Exception
+            Log(ex)
+            Throw
+        End Try
+    End Function
+
     Async Function UpdateRemoteData() As Task
         Try
             If IO.File.Exists(My.Settings.GitLocation) Then

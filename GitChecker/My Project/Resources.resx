@@ -133,6 +133,9 @@
   <data name="folder_3_16_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\folder-3-16-gray.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="genealogy_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\genealogy-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="list_rich_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\list-rich-16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

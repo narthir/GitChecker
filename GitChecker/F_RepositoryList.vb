@@ -194,4 +194,17 @@
         My.Settings.ListLocation = Me.Location
         My.Settings.Save()
     End Sub
+
+    Private Async Sub B_ChangeBranch_Click(sender As Object, e As EventArgs) Handles B_ChangeBranch.Click
+        Try
+            Dim name = InputBox("Name:", "Change Branch", "")
+            For Each repo In repoItems.Select(Function(x) x.Repository)
+                If repo.LocalBranches.Select(Function(x) x.Name.ToLower).Contains(name.ToLower) Then
+                    Await repo.SwitchBranch(name)
+                End If
+            Next
+        Catch ex As Exception
+
+        End Try
+    End Sub
 End Class

@@ -3,20 +3,14 @@
 Public Class ConsoleController
     Implements IDisposable
 
-    Private _proc As Process
     Delegate Sub OnDataRecievedDelegate(Data As String)
-
     Public ReadOnly Property ExitCode As Integer?
-
     Public ReadOnly Property Process As Process
-        Get
-            Return _proc
-        End Get
-    End Property
+    Public ReadOnly Property DisposeProcess As Boolean
 
-
-    Public Sub New(process As Process, onDataRec As OnDataRecievedDelegate, Optional recievingControl As Control = Nothing)
-        _proc = process
+    Public Sub New(process As Process, onDataRec As OnDataRecievedDelegate, Optional recievingControl As Control = Nothing, Optional disposeProc As Boolean = True)
+        Me.Process = process
+        Me.DisposeProcess = disposeProc
         Dim procInf = process.StartInfo
         procInf.RedirectStandardOutput = True
         procInf.RedirectStandardError = True
@@ -42,10 +36,10 @@ Public Class ConsoleController
 
     Public Async Function Run() As Task
         Await Task.Run(Sub()
-                           _proc.Start()
-                           _proc.BeginOutputReadLine()
-                           _proc.WaitForExit()
-                           Me._ExitCode = _proc.ExitCode
+                           Me.Process.Start()
+                           Me.Process.BeginOutputReadLine()
+                           Me.Process.WaitForExit()
+                           Me._ExitCode = Me.Process.ExitCode
                        End Sub)
         Await Task.Delay(100)
     End Function
@@ -56,7 +50,13 @@ Public Class ConsoleController
     Protected Overridable Sub Dispose(disposing As Boolean)
         If Not disposedValue Then
             If disposing Then
-                _proc.Dispose()
+                If Me.DisposeProcess Then
+                    Try
+                        If Me.Process.HasExited = False Then Me.Process.Kill()
+                    Catch ex As Exception
+                    End Try
+                    Me.Process.Dispose()
+                End If
             End If
         End If
         disposedValue = True

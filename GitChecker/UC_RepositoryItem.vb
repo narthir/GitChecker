@@ -47,8 +47,8 @@
 
         L_BranchName.Text = ""
         Try
-            Dim currBranch = Repository.LocalBranches.Where(Function(x) x.IsCurrent).Single
-            If currBranch.Name.ToLower <> "master" Then L_BranchName.Text = String.Format("Branch: {0}", currBranch.Name)
+            Dim currBranch = Repository.CurrentBranch
+            If currBranch IsNot Nothing AndAlso currBranch.Name.ToLower <> "master" Then L_BranchName.Text = String.Format("Branch: {0}", currBranch.Name)
         Catch ex As Exception
         End Try
     End Sub
@@ -86,7 +86,7 @@
         p.Start()
     End Sub
 
-    Private Sub PB_PullCount_Click(sender As Object, e As EventArgs) Handles PB_PullCount.Click
-        Repository.PullAll
+    Private Async Sub PB_PullCount_Click(sender As Object, e As EventArgs) Handles PB_PullCount.Click
+        Await Repository.PullAll()
     End Sub
 End Class

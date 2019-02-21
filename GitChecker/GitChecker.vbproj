@@ -111,6 +111,7 @@
     <Compile Include="F_Settings.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GlobalSuppressions.vb" />
     <Compile Include="MainController.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -240,6 +241,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sinchronize-16-gray.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\genealogy-16.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

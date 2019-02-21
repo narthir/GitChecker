@@ -27,22 +27,23 @@ Partial Class F_RepositoryList
         Me.TLP_Main = New System.Windows.Forms.TableLayoutPanel()
         Me.FLP_RepositoryList = New System.Windows.Forms.FlowLayoutPanel()
         Me.TLP_Options = New System.Windows.Forms.TableLayoutPanel()
+        Me.B_ChangeBranch = New System.Windows.Forms.Button()
+        Me.TLP_Filter = New System.Windows.Forms.TableLayoutPanel()
+        Me.TE_Filter = New System.Windows.Forms.TextBox()
+        Me.P_Header = New System.Windows.Forms.Panel()
         Me.B_PullAll = New System.Windows.Forms.Button()
         Me.B_Refresh = New System.Windows.Forms.Button()
         Me.B_Settings = New System.Windows.Forms.Button()
         Me.B_Pin = New System.Windows.Forms.Button()
-        Me.TLP_Filter = New System.Windows.Forms.TableLayoutPanel()
         Me.B_FilterOnlyChanged = New System.Windows.Forms.Button()
-        Me.TE_Filter = New System.Windows.Forms.TextBox()
         Me.PB_Filter = New System.Windows.Forms.PictureBox()
-        Me.P_Header = New System.Windows.Forms.Panel()
         Me.B_Close = New System.Windows.Forms.Button()
         Me.MainPanel.SuspendLayout()
         Me.TLP_Main.SuspendLayout()
         Me.TLP_Options.SuspendLayout()
         Me.TLP_Filter.SuspendLayout()
-        CType(Me.PB_Filter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.P_Header.SuspendLayout()
+        CType(Me.PB_Filter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MainPanel
@@ -89,16 +90,18 @@ Partial Class F_RepositoryList
         '
         'TLP_Options
         '
-        Me.TLP_Options.ColumnCount = 5
+        Me.TLP_Options.ColumnCount = 6
         Me.TLP_Options.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.TLP_Options.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TLP_Options.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TLP_Options.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.TLP_Options.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TLP_Options.Controls.Add(Me.B_PullAll, 3, 0)
-        Me.TLP_Options.Controls.Add(Me.B_Refresh, 2, 0)
-        Me.TLP_Options.Controls.Add(Me.B_Settings, 4, 0)
-        Me.TLP_Options.Controls.Add(Me.B_Pin, 1, 0)
+        Me.TLP_Options.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TLP_Options.Controls.Add(Me.B_ChangeBranch, 1, 0)
+        Me.TLP_Options.Controls.Add(Me.B_PullAll, 4, 0)
+        Me.TLP_Options.Controls.Add(Me.B_Refresh, 3, 0)
+        Me.TLP_Options.Controls.Add(Me.B_Settings, 5, 0)
+        Me.TLP_Options.Controls.Add(Me.B_Pin, 2, 0)
         Me.TLP_Options.Controls.Add(Me.TLP_Filter, 0, 0)
         Me.TLP_Options.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.FixedSize
         Me.TLP_Options.Location = New System.Drawing.Point(4, 523)
@@ -108,6 +111,58 @@ Partial Class F_RepositoryList
         Me.TLP_Options.Size = New System.Drawing.Size(452, 32)
         Me.TLP_Options.TabIndex = 3
         '
+        'B_ChangeBranch
+        '
+        Me.B_ChangeBranch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
+        Me.B_ChangeBranch.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro
+        Me.B_ChangeBranch.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.B_ChangeBranch.Image = Global.GitChecker.My.Resources.Resources.genealogy_16
+        Me.B_ChangeBranch.Location = New System.Drawing.Point(277, 3)
+        Me.B_ChangeBranch.Margin = New System.Windows.Forms.Padding(5, 3, 5, 3)
+        Me.B_ChangeBranch.Name = "B_ChangeBranch"
+        Me.B_ChangeBranch.Size = New System.Drawing.Size(26, 26)
+        Me.B_ChangeBranch.TabIndex = 4
+        Me.B_ChangeBranch.UseVisualStyleBackColor = True
+        '
+        'TLP_Filter
+        '
+        Me.TLP_Filter.ColumnCount = 3
+        Me.TLP_Filter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.TLP_Filter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TLP_Filter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40.0!))
+        Me.TLP_Filter.Controls.Add(Me.B_FilterOnlyChanged, 2, 0)
+        Me.TLP_Filter.Controls.Add(Me.TE_Filter, 1, 0)
+        Me.TLP_Filter.Controls.Add(Me.PB_Filter, 0, 0)
+        Me.TLP_Filter.Location = New System.Drawing.Point(3, 0)
+        Me.TLP_Filter.Margin = New System.Windows.Forms.Padding(3, 0, 0, 0)
+        Me.TLP_Filter.Name = "TLP_Filter"
+        Me.TLP_Filter.RowCount = 1
+        Me.TLP_Filter.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
+        Me.TLP_Filter.Size = New System.Drawing.Size(182, 32)
+        Me.TLP_Filter.TabIndex = 2
+        '
+        'TE_Filter
+        '
+        Me.TE_Filter.Anchor = System.Windows.Forms.AnchorStyles.Left
+        Me.TE_Filter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TE_Filter.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TE_Filter.Location = New System.Drawing.Point(37, 4)
+        Me.TE_Filter.Margin = New System.Windows.Forms.Padding(0)
+        Me.TE_Filter.Name = "TE_Filter"
+        Me.TE_Filter.Size = New System.Drawing.Size(105, 23)
+        Me.TE_Filter.TabIndex = 0
+        '
+        'P_Header
+        '
+        Me.P_Header.BackColor = System.Drawing.Color.Gainsboro
+        Me.P_Header.Controls.Add(Me.B_Close)
+        Me.P_Header.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.P_Header.Location = New System.Drawing.Point(1, 1)
+        Me.P_Header.Margin = New System.Windows.Forms.Padding(0)
+        Me.P_Header.Name = "P_Header"
+        Me.P_Header.Size = New System.Drawing.Size(458, 38)
+        Me.P_Header.TabIndex = 4
+        '
         'B_PullAll
         '
         Me.B_PullAll.Anchor = System.Windows.Forms.AnchorStyles.Right
@@ -115,8 +170,8 @@ Partial Class F_RepositoryList
         Me.B_PullAll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.B_PullAll.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro
         Me.B_PullAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_PullAll.Location = New System.Drawing.Point(370, 3)
-        Me.B_PullAll.Margin = New System.Windows.Forms.Padding(10, 3, 10, 3)
+        Me.B_PullAll.Location = New System.Drawing.Point(385, 3)
+        Me.B_PullAll.Margin = New System.Windows.Forms.Padding(5, 3, 5, 3)
         Me.B_PullAll.Name = "B_PullAll"
         Me.B_PullAll.Size = New System.Drawing.Size(26, 26)
         Me.B_PullAll.TabIndex = 3
@@ -129,8 +184,8 @@ Partial Class F_RepositoryList
         Me.B_Refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.B_Refresh.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro
         Me.B_Refresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_Refresh.Location = New System.Drawing.Point(324, 3)
-        Me.B_Refresh.Margin = New System.Windows.Forms.Padding(10, 3, 10, 3)
+        Me.B_Refresh.Location = New System.Drawing.Point(349, 3)
+        Me.B_Refresh.Margin = New System.Windows.Forms.Padding(5, 3, 5, 3)
         Me.B_Refresh.Name = "B_Refresh"
         Me.B_Refresh.Size = New System.Drawing.Size(26, 26)
         Me.B_Refresh.TabIndex = 1
@@ -143,8 +198,8 @@ Partial Class F_RepositoryList
         Me.B_Settings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.B_Settings.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro
         Me.B_Settings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_Settings.Location = New System.Drawing.Point(416, 3)
-        Me.B_Settings.Margin = New System.Windows.Forms.Padding(10, 3, 10, 3)
+        Me.B_Settings.Location = New System.Drawing.Point(421, 3)
+        Me.B_Settings.Margin = New System.Windows.Forms.Padding(5, 3, 5, 3)
         Me.B_Settings.Name = "B_Settings"
         Me.B_Settings.Size = New System.Drawing.Size(26, 26)
         Me.B_Settings.TabIndex = 0
@@ -156,29 +211,12 @@ Partial Class F_RepositoryList
         Me.B_Pin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.B_Pin.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro
         Me.B_Pin.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_Pin.Location = New System.Drawing.Point(278, 3)
-        Me.B_Pin.Margin = New System.Windows.Forms.Padding(10, 3, 10, 3)
+        Me.B_Pin.Location = New System.Drawing.Point(313, 3)
+        Me.B_Pin.Margin = New System.Windows.Forms.Padding(5, 3, 5, 3)
         Me.B_Pin.Name = "B_Pin"
         Me.B_Pin.Size = New System.Drawing.Size(26, 26)
         Me.B_Pin.TabIndex = 0
         Me.B_Pin.UseVisualStyleBackColor = True
-        '
-        'TLP_Filter
-        '
-        Me.TLP_Filter.ColumnCount = 3
-        Me.TLP_Filter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.TLP_Filter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TLP_Filter.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 47.0!))
-        Me.TLP_Filter.Controls.Add(Me.B_FilterOnlyChanged, 2, 0)
-        Me.TLP_Filter.Controls.Add(Me.TE_Filter, 1, 0)
-        Me.TLP_Filter.Controls.Add(Me.PB_Filter, 0, 0)
-        Me.TLP_Filter.Location = New System.Drawing.Point(3, 0)
-        Me.TLP_Filter.Margin = New System.Windows.Forms.Padding(3, 0, 0, 0)
-        Me.TLP_Filter.Name = "TLP_Filter"
-        Me.TLP_Filter.RowCount = 1
-        Me.TLP_Filter.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TLP_Filter.Size = New System.Drawing.Size(231, 32)
-        Me.TLP_Filter.TabIndex = 2
         '
         'B_FilterOnlyChanged
         '
@@ -186,23 +224,12 @@ Partial Class F_RepositoryList
         Me.B_FilterOnlyChanged.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.B_FilterOnlyChanged.FlatAppearance.BorderColor = System.Drawing.Color.Gainsboro
         Me.B_FilterOnlyChanged.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.B_FilterOnlyChanged.Location = New System.Drawing.Point(185, 3)
+        Me.B_FilterOnlyChanged.Location = New System.Drawing.Point(143, 3)
         Me.B_FilterOnlyChanged.Margin = New System.Windows.Forms.Padding(1, 3, 13, 3)
         Me.B_FilterOnlyChanged.Name = "B_FilterOnlyChanged"
-        Me.B_FilterOnlyChanged.Size = New System.Drawing.Size(33, 26)
+        Me.B_FilterOnlyChanged.Size = New System.Drawing.Size(26, 26)
         Me.B_FilterOnlyChanged.TabIndex = 3
         Me.B_FilterOnlyChanged.UseVisualStyleBackColor = True
-        '
-        'TE_Filter
-        '
-        Me.TE_Filter.Anchor = System.Windows.Forms.AnchorStyles.Left
-        Me.TE_Filter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TE_Filter.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TE_Filter.Location = New System.Drawing.Point(37, 4)
-        Me.TE_Filter.Margin = New System.Windows.Forms.Padding(0)
-        Me.TE_Filter.Name = "TE_Filter"
-        Me.TE_Filter.Size = New System.Drawing.Size(147, 23)
-        Me.TE_Filter.TabIndex = 0
         '
         'PB_Filter
         '
@@ -213,17 +240,6 @@ Partial Class F_RepositoryList
         Me.PB_Filter.Size = New System.Drawing.Size(31, 26)
         Me.PB_Filter.TabIndex = 1
         Me.PB_Filter.TabStop = False
-        '
-        'P_Header
-        '
-        Me.P_Header.BackColor = System.Drawing.Color.Gainsboro
-        Me.P_Header.Controls.Add(Me.B_Close)
-        Me.P_Header.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.P_Header.Location = New System.Drawing.Point(1, 1)
-        Me.P_Header.Margin = New System.Windows.Forms.Padding(0)
-        Me.P_Header.Name = "P_Header"
-        Me.P_Header.Size = New System.Drawing.Size(458, 38)
-        Me.P_Header.TabIndex = 4
         '
         'B_Close
         '
@@ -255,8 +271,8 @@ Partial Class F_RepositoryList
         Me.TLP_Options.ResumeLayout(False)
         Me.TLP_Filter.ResumeLayout(False)
         Me.TLP_Filter.PerformLayout()
-        CType(Me.PB_Filter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.P_Header.ResumeLayout(False)
+        CType(Me.PB_Filter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -275,4 +291,5 @@ Partial Class F_RepositoryList
     Friend WithEvents B_FilterOnlyChanged As Button
     Friend WithEvents P_Header As Panel
     Friend WithEvents B_PullAll As Button
+    Friend WithEvents B_ChangeBranch As Button
 End Class
