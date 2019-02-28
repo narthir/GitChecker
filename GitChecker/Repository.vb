@@ -194,7 +194,7 @@ Public Class Repository
     Async Function SwitchBranch(name As String) As Task
         Try
             Dim destBranch = Me.LocalBranches.Where(Function(x) x.Name.ToLower = name.ToLower).SingleOrDefault
-            If name = "" OrElse destBranch Is Nothing OrElse Me.CurrentBranch Is Nothing OrElse Me.AnyChanges = True Then Return
+            If name = "" OrElse destBranch Is Nothing OrElse Me.CurrentBranch Is Nothing OrElse Me.CurrentBranch.AnyChanges OrElse Me.UncommitedStates.Count > 0 Then Return
             If IO.File.Exists(My.Settings.GitLocation) AndAlso Me.CurrentBranch?.Name <> name Then
                 RaiseEvent UpdateStarted(Me)
                 Dim results As New List(Of String)

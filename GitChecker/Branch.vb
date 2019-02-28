@@ -18,8 +18,15 @@ Public Class LocalBranch
         Me.Behind = behind
     End Sub
 
-    Public Ahead As Integer
-    Public Behind As Integer
-    Public IsCurrent As Boolean
+    Public ReadOnly Property Ahead As Integer
+    Public ReadOnly Property Behind As Integer
+    Public ReadOnly Property IsCurrent As Boolean
+
+
+    Public ReadOnly Property AnyChanges() As Boolean
+        Get
+            Return Ahead > 0 OrElse Behind > 0
+        End Get
+    End Property
 
 End Class
