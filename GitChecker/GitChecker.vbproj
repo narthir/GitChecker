@@ -96,9 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Branch.vb" />
-    <Compile Include="ConsoleController.vb" />
-    <Compile Include="EventQueueHandler.vb" />
-    <Compile Include="Extensions.vb" />
+    <Compile Include="Utils\ConsoleController.vb" />
+    <Compile Include="Utils\EventQueueHandler.vb" />
+    <Compile Include="Utils\Extensions.vb" />
     <Compile Include="F_Log.Designer.vb">
       <DependentUpon>F_Log.vb</DependentUpon>
     </Compile>
@@ -141,6 +141,7 @@
     <Compile Include="UC_RepositoryItem.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Utils\FormDragHelper.vb" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="F_Log.resx">
