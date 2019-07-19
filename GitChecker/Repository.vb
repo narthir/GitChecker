@@ -6,7 +6,7 @@ Public Class Repository
 
     Private watcherEventQueHandler As New EventQueueHandler(TimeSpan.FromMilliseconds(1500))
 
-    Public Sub New(location As DirectoryInfo)
+    Public Sub New(location As DirectoryInfo,)
         Me.Location = location
 
         watcher = New FileSystemWatcher()
@@ -15,7 +15,7 @@ Public Class Repository
         watcher.NotifyFilter = NotifyFilters.LastWrite + NotifyFilters.CreationTime + NotifyFilters.FileName
         watcher.Filter = "*.*"
 
-        AddHandler watcherEventQueHandler.TimeoutReached, AddressOf UpdateLocalData
+        AddHandler watcherEventQueHandler.TimeoutReached, Async Sub() Await UpdateLocalData()
         Dim ulcSub = Sub() watcherEventQueHandler.AppendAndResetTimer(Nothing, Nothing)
 
         AddHandler watcher.Changed, ulcSub
