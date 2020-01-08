@@ -196,13 +196,26 @@
     End Sub
 
     Private Async Sub B_ChangeBranch_Click(sender As Object, e As EventArgs) Handles B_ChangeBranch.Click
+        'Try
+        '    Dim name = InputBox("Name:", "Change Branch", "")
+        '    For Each repo In repoItems.Select(Function(x) x.Repository)
+        '        If repo.LocalBranches.Select(Function(x) x.Name.ToLower).Contains(name.ToLower) Then
+        '            Await repo.SwitchBranch(name)
+        '        End If
+        '    Next
+        'Catch ex As Exception
+
+        'End Try
         Try
-            Dim name = InputBox("Name:", "Change Branch", "")
-            For Each repo In repoItems.Select(Function(x) x.Repository)
-                If repo.LocalBranches.Select(Function(x) x.Name.ToLower).Contains(name.ToLower) Then
-                    Await repo.SwitchBranch(name)
+            Using f As New F_Branches(repoItems.SelectMany(Function(x) x.Repository.LocalBranches))
+                If f.ShowDialog(Me) = DialogResult.OK Then
+                    For Each repo In repoItems.Select(Function(x) x.Repository)
+                        If repo.LocalBranches.Select(Function(x) x.Name.ToLower).Contains(f.SelectedBranchName.ToLower) Then
+                            Await repo.SwitchBranch(f.SelectedBranchName)
+                        End If
+                    Next
                 End If
-            Next
+            End Using
         Catch ex As Exception
 
         End Try

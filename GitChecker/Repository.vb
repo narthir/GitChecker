@@ -6,7 +6,7 @@ Public Class Repository
 
     Private watcherEventQueHandler As New EventQueueHandler(TimeSpan.FromMilliseconds(1500))
 
-    Public Sub New(location As DirectoryInfo,)
+    Public Sub New(location As DirectoryInfo)
         Me.Location = location
 
         watcher = New FileSystemWatcher()

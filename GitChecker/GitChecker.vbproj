@@ -99,6 +99,12 @@
     <Compile Include="ConsoleController.vb" />
     <Compile Include="EventQueueHandler.vb" />
     <Compile Include="Extensions.vb" />
+    <Compile Include="F_Branches.Designer.vb">
+      <DependentUpon>F_Branches.vb</DependentUpon>
+    </Compile>
+    <Compile Include="F_Branches.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="F_Log.Designer.vb">
       <DependentUpon>F_Log.vb</DependentUpon>
     </Compile>
@@ -143,6 +149,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="F_Branches.resx">
+      <DependentUpon>F_Branches.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="F_Log.resx">
       <DependentUpon>F_Log.vb</DependentUpon>
     </EmbeddedResource>

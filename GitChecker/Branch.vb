@@ -1,6 +1,6 @@
 ﻿Public MustInherit Class Branch
 
-    Public Name As String
+    Public Property Name As String
 
     Public Sub New(name As String)
         Me.Name = name
